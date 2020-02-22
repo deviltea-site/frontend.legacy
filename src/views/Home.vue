@@ -1,14 +1,9 @@
 <template>
   <div id="home">
-    <h1>This is an home page</h1>
+    <main>
+      <div id="first-line">Hello, I am</div>
+      <div id="second-line" class="font-bold">DevilTea</div>
+      <div id="third-line">a newbie frontend developer</div>
+    </main>
   </div>
 </template>
-
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-
-@Component({})
-export default class Home extends Vue {
-
-}
-</script>
