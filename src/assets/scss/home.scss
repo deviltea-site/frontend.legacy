@@ -4,32 +4,32 @@
   justify-content: center;
   align-items: center;
 
-  main {
+  .logo {
     user-select: none;
 
-    #first-line,
-    #third-line {
+    .first-line,
+    .third-line {
       color: $primary;
     }
-    #first-line,
-    #second-line,
-    #third-line {
+    .first-line,
+    .second-line,
+    .third-line {
       opacity: 0;
     }
-    #first-line {
+    .first-line {
       padding-top: 2rem;
       font-size: 3.5rem;
       animation: 1s slide-fade-bottom-in 1s;
       animation-fill-mode: forwards;
     }
-    #second-line {
+    .second-line {
       color: $light;
       font-size: 10rem;
       text-align: center;
       animation: 1s slide-fade-left-in 1.7s;
       animation-fill-mode: forwards;
     }
-    #third-line {
+    .third-line {
       padding-bottom: 3.5rem;
       font-size: 2rem;
       text-align: end;
@@ -38,17 +38,17 @@
     }
 
     @include mobile {
-      #first-line {
+      .first-line {
         margin-bottom: 16px;
         padding-top: 1.25rem;
         font-size: 2.5rem;
         text-align: center;
       }
-      #second-line {
+      .second-line {
         margin-bottom: 16px;
         font-size: 4.5rem;
       }
-      #third-line {
+      .third-line {
         padding-bottom: 2.5rem;
         font-size: 1.25rem;
         text-align: center;
