@@ -22,7 +22,7 @@ export default class Icon extends Vue {
     if (!this.$slots.default || !this.$slots.default[0] || !this.$slots.default[0].text) {
       return ''
     }
-    return 'mdi' + this.$slots.default[0].text.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join()
+    return 'mdi' + this.$slots.default[0].text.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join('')
   }
 
   private get path () {
