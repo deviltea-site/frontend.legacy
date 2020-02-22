@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="view-container">
     <main>
       <div id="first-line">Hello, I am</div>
       <div id="second-line" class="font-bold">DevilTea</div>

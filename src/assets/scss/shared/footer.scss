@@ -1,0 +1,10 @@
+#footer {
+  height: $footer-height;
+
+  .copyright-text {
+    color: darken($primary, 15);
+    font-size: 12px;
+    line-height: $footer-height;
+    text-align: center;
+  }
+}
