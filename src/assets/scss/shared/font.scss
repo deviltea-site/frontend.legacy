@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+ul,
+li,
+span {
+  line-height: 1;
+  font-family: Noto Sans TC, Din, Microsoft JhengHei, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.font {
+  &-bold {
+    font-weight: 500;
+  }
+
+  &-heavy {
+    font-weight: 700;
+  }
+
+  &-italic {
+    font-style: italic;
+  }
+}

@@ -1,0 +1,16 @@
+@import "shared/reset.scss";
+@import "shared/font.scss";
+@import "shared/variables.scss";
+@import "shared/colors.scss";
+@import "shared/breakpoints.scss";
+@import "shared/container.scss";
+@import "shared/navbar.scss";
+@import "shared/footer.scss";
+
+@import "home.scss";
+@import "about.scss";
+
+#app {
+  min-height: 100vh;
+  background-color: $dark;
+}
