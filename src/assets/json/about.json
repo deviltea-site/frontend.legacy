@@ -8,48 +8,68 @@
         "name": "Email",
         "href": "mailto:ch19980814@gmail.com",
         "icon": "email",
-        "aria-label": "contact me by email"
+        "ariaLabel": "contact me by email"
       },
       {
         "name": "GitHub",
         "href": "https://github.com/DevilTea",
-        "icon": "github",
-        "aria-label": "explore my github"
+        "icon": "github-box",
+        "ariaLabel": "explore my github"
       },
       {
         "name": "Telegram",
         "href": "https://t.me/deviltea",
         "icon": "telegram",
-        "aria-label": "contact me by telegram"
+        "ariaLabel": "contact me by telegram"
       },
       {
         "name": "Twitter",
         "href": "https://twitter.com/ch870814",
         "icon": "twitter",
-        "aria-label": "contact me by twitter"
+        "ariaLabel": "contact me by twitter"
       },
       {
         "name": "Facebook",
         "href": "https://www.facebook.com/profile.php?id=100009354752945",
-        "icon": "facebook",
-        "aria-label": "contact me by facebook"
+        "icon": "facebook-box",
+        "ariaLabel": "contact me by facebook"
       },
       {
         "name": "Instagram",
         "href": "https://www.instagram.com/deviltea__",
         "icon": "instagram",
-        "aria-label": "contact me by instagram"
+        "ariaLabel": "contact me by instagram"
       }
     ]
   },
   "intro": "菜鳥前端開發者，每天多少都會朝著永無止盡的前端技術彼方追逐，作為一個開發者正在不斷提升自學與解決問題的能力，目前也正在學前端 UI / UX 設計，享受與團隊夥伴共同完成目標的成就感，想像塊海綿將所見所聞、知識與經驗盡數吸收！",
-  "experiences": [
-    "臺北科技大學 - 資訊工程系：2016 ~ 2020",
-    "北科資工系學會 - 資訊長",
-    "北科程式設計研究社 - 社團支援",
-    "吾思傳媒 女人迷 Womany - 前端實習生：2019/07 ~ 2020/1",
-    "SITCON 2020 開發組 - 官網開發"
+  "experience": [
+    {
+      "title": "臺北科技大學",
+      "subtitle": "資訊工程系",
+      "duration": "2016 ~ 2020"
+    },
+    {
+      "title": "北科資工系學會 16th",
+      "subtitle": "資訊長",
+      "duration": "2018 Feb ~ 2019 Feb"
+    },
+    {
+      "title": "北科程式設計研究社",
+      "subtitle": "社團支援",
+      "duration": "2019 ~ Now"
+    },
+    {
+      "title": "女人迷 Womany (吾思傳媒)",
+      "subtitle": "前端實習生",
+      "duration": "2019 Jul ~ 2020 Jan"
+    },
+    {
+      "title": "SITCON 2020 開發組",
+      "subtitle": "官網開發小精靈",
+      "duration": "2020"
+    }
   ],
-  "skills": [],
-  "projects": []
+  "skill": [],
+  "project": []
 }
