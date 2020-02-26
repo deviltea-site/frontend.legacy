@@ -11,24 +11,22 @@
     .third-line {
       color: $primary;
     }
-    .first-line,
-    .second-line,
-    .third-line {
-      animation-delay: 0.3s;
-    }
     .first-line {
       padding-top: 2rem;
       font-size: 3.5rem;
+      animation-delay: 0.8s;
     }
     .second-line {
       color: $light;
       font-size: 10rem;
       text-align: center;
+      animation-delay: 1.8s;
     }
     .third-line {
       padding-bottom: 3.5rem;
       font-size: 2rem;
       text-align: end;
+      animation-delay: 1.3s;
     }
 
     @include mobile {
