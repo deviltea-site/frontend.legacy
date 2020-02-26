@@ -19,40 +19,31 @@
     color: $light;
     margin-bottom: $space-between-with-header;
     font-size: 2.5rem;
-
-    &.underlined {
-      padding-bottom: 8px;
-      border-bottom: solid 5px $primary;
-    }
   }
 
   h3 {
     color: $light;
     margin-bottom: $space-between-with-header;
     font-size: 2rem;
-
-    &.underlined {
-      padding-bottom: 8px;
-      border-bottom: solid 5px $primary;
-    }
   }
 
   h4 {
     margin-bottom: 16px;
     color: $light;
     font-size: 1.5rem;
-
-    &.underlined {
-      padding-bottom: 6px;
-      border-bottom: solid 5px $primary;
-    }
   }
 
   .underlined {
-    padding-right: 1.1em;
-    padding-bottom: 4px;
     display: inline-block;
-    border-bottom: solid 2px $primary;
+    &::after {
+      content: "";
+      display: block;
+      background-color: $primary;
+      width: 120%;
+      height: 5px;
+      margin-top: 8px;
+      border-radius: 10px;
+    }
   }
 
   .about-block {
@@ -170,8 +161,8 @@
         margin-left: 0;
         text-align: center;
 
-        h2.underlined {
-          padding: 0 16px 8px 16px;
+        h2.underlined::after {
+          width: 100%;
         }
 
         .contacts {
