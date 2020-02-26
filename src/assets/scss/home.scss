@@ -14,27 +14,21 @@
     .first-line,
     .second-line,
     .third-line {
-      opacity: 0;
+      animation-delay: 0.3s;
     }
     .first-line {
       padding-top: 2rem;
       font-size: 3.5rem;
-      animation: 1s slide-fade-bottom-in 1s;
-      animation-fill-mode: forwards;
     }
     .second-line {
       color: $light;
       font-size: 10rem;
       text-align: center;
-      animation: 1s slide-fade-left-in 1.7s;
-      animation-fill-mode: forwards;
     }
     .third-line {
       padding-bottom: 3.5rem;
       font-size: 2rem;
       text-align: end;
-      animation: 1s slide-fade-top-in 1.3s;
-      animation-fill-mode: forwards;
     }
 
     @include mobile {

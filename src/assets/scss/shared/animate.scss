@@ -1,1 +1,10 @@
-@import "animate/slide-fade-in";
+@import "animate/slide-fade";
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+
+  &.infinite {
+    animation-iteration-count: infinite;
+  }
+}
