@@ -60,7 +60,7 @@
       "duration": "2019 ~ Now"
     },
     {
-      "title": "女人迷 Womany (吾思傳媒)",
+      "title": "女人迷 Womany",
       "subtitle": "前端實習生",
       "duration": "2019 Jul ~ 2020 Jan"
     },
@@ -70,6 +70,120 @@
       "duration": "2020"
     }
   ],
-  "skill": [],
+  "skill": [
+    {
+      "name": "HTML & CSS",
+      "category": "前端",
+      "type": "語言",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "SCSS",
+      "category": "前端",
+      "type": "語言",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "JavaScript",
+      "category": "前端",
+      "type": "語言",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "TypeScript",
+      "category": "前端",
+      "type": "語言",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "Bootstrap 4",
+      "category": "前端",
+      "type": "其他",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "Vue.js",
+      "category": "前端",
+      "type": "框架",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "Nuxt.js",
+      "category": "前端",
+      "type": "框架",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "Vuetify",
+      "category": "前端",
+      "type": "框架",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "Webpack",
+      "category": "前端",
+      "type": "工具",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "jQuery",
+      "category": "前端",
+      "type": "其他",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "Git",
+      "category": "其他",
+      "type": "工具",
+      "proficiency": "熟悉"
+    },
+    {
+      "name": "Node.js",
+      "category": "後端",
+      "type": "其他",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "Koa.js",
+      "category": "後端",
+      "type": "框架",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "MySQL",
+      "category": "後端",
+      "type": "資料庫",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "MongoDB",
+      "category": "後端",
+      "type": "資料庫",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "Linux",
+      "category": "其他",
+      "type": "其他",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "RESTful Web API",
+      "category": "其他",
+      "type": "其他",
+      "proficiency": "有經驗"
+    },
+    {
+      "name": "Docker",
+      "category": "其他",
+      "type": "工具",
+      "proficiency": "有經驗"
+    }
+  ],
+  "skillSortSequence": {
+    "category": ["前端", "後端", "其他"],
+    "type": ["語言", "框架", "工具", "資料庫", "其他"],
+    "proficiency": ["熟悉", "有經驗"]
+  },
   "project": []
 }

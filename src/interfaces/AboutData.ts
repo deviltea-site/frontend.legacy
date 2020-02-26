@@ -18,10 +18,26 @@ export interface ExperienceData {
   duration: string;
 }
 
+export interface SkillData {
+  name: string;
+  category: string;
+  type: string;
+  proficiency: string;
+  [key: string]: string;
+}
+
+export interface SkillSortSequence {
+  category: string[];
+  type: string[];
+  proficiency: string[];
+  [key: string]: string[];
+}
+
 export default interface AboutData {
   profile: ProfileData;
   intro: string;
   experience: ExperienceData[];
-  skill: never[];
+  skill: SkillData[];
+  skillSortSequence: SkillSortSequence;
   project: never[];
 }
