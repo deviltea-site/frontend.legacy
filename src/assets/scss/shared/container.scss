@@ -1,5 +1,13 @@
 .view-container {
+  padding-top: $navbar-height;
+  max-width: 100%;
   min-height: calc(100% - #{$footer-height});
+  overflow-x: hidden;
+
+  @include mobile {
+    padding-top: $navbar-height-mobile;
+    min-height: calc(100% - #{$footer-height});
+  }
 }
 
 .content-container {

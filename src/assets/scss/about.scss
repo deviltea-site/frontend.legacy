@@ -3,11 +3,9 @@
   $view-container-horizontal-padding: 32px;
 
   &.view-container {
-    padding-top: 180px;
-
     @include mobile {
-      padding: 96px $view-container-horizontal-padding 0
-        $view-container-horizontal-padding;
+      padding-left: $view-container-horizontal-padding;
+      padding-right: $view-container-horizontal-padding;
     }
   }
 
@@ -47,17 +45,7 @@
   }
 
   .about-block {
-    margin-bottom: 60px;
-  }
-
-  .enter-animation {
-    animation: 0.6s slide-fade-right-in;
-    animation-fill-mode: forwards;
-  }
-
-  .leave-animation {
-    animation: 0.6s slide-fade-left-out;
-    animation-fill-mode: forwards;
+    margin-top: 60px;
   }
 
   .experience-skill-container {

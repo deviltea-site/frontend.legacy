@@ -1,5 +1,4 @@
 #home {
-  padding: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,19 +13,19 @@
     .first-line {
       padding-top: 2rem;
       font-size: 3.5rem;
-      animation-delay: 0.8s;
+      animation-delay: 0.5s;
     }
     .second-line {
       color: $light;
       font-size: 10rem;
       text-align: center;
-      animation-delay: 1.8s;
+      animation-delay: 1.5s;
     }
     .third-line {
       padding-bottom: 3.5rem;
       font-size: 2rem;
       text-align: end;
-      animation-delay: 1.3s;
+      animation-delay: 1s;
     }
 
     @include mobile {

@@ -38,5 +38,9 @@ import aboutData from '@/assets/json/about.json'
 })
 export default class About extends Vue {
   private aboutData: AboutData = aboutData
+
+  public mounted () {
+    this.$emit('render')
+  }
 }
 </script>
