@@ -1,0 +1,26 @@
+#not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    padding-bottom: $navbar-height;
+    font-size: 4rem;
+    color: $primary;
+
+    @include mobile {
+      padding-bottom: $navbar-height-mobile;
+      font-size: 2rem;
+    }
+  }
+
+  h2 {
+    font-size: 12rem;
+    color: $light;
+
+    @include mobile {
+      font-size: 6rem;
+    }
+  }
+}

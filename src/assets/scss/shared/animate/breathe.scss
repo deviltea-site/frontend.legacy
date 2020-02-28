@@ -1,0 +1,18 @@
+@keyframes breathe {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.breathe {
+  animation-name: breathe;
+}

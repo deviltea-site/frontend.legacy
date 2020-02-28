@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
+import NotFound from '@/views/NotFound.vue'
 import head from '@/utils/head'
 
 Vue.use(VueRouter)
@@ -21,7 +22,25 @@ const routes: RouteConfig[] = [
     component: About,
     meta: {
       title: '關於我',
-      description: '關於 DevilTea 的一些資訊'
+      description: '關於 DevilTea 的一些資訊 ＯｗＯ'
+    }
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: NotFound,
+    meta: {
+      title: '404 Not Found',
+      description: '找不到這個頁面 ＱＡＱ'
+    }
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound,
+    meta: {
+      title: '404 Not Found',
+      description: '找不到這個頁面 ＱＡＱ'
     }
   }
 ]
