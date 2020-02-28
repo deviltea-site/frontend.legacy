@@ -223,6 +223,7 @@
         color: $light;
         background-color: $primary;
         cursor: pointer;
+        user-select: none;
 
         &::after {
           content: attr(data-tooltip);
