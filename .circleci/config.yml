@@ -1,0 +1,71 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: "12.16"
+    steps:
+      - run:
+          name: Install Headless Chrome dependencies
+          command: |
+            sudo apt-get install -yq \
+            gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
+            libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
+            libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 \
+            libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
+            fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm ci
+            - run: npm run lint
+
+  deploy:
+    executor:
+      name: node/default
+      tag: "12.16"
+    steps:
+      - run:
+          name: Install Headless Chrome dependencies
+          command: |
+            sudo apt-get install -yq \
+            gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
+            libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
+            libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 \
+            libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
+            fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm ci
+            - run: npm run build
+            - run:
+                name: Deploy gh-page
+                command: |
+                  cp -r .circleci dist/.circleci;
+                  cd dist;
+                  echo deviltea.me > CNAME
+                  git config --global user.email $GIT_USER_EMAIL;
+                  git config --global user.name $GIT_USER_NAME;
+                  git init;
+                  git add -A;
+                  git commit -m 'Deploy';
+                  git push -f git@github.com:deviltea-site/frontend.git master:gh-pages;
+workflows:
+  development:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
+                - gh-pages
+  production:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
