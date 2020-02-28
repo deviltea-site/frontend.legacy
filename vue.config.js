@@ -1,5 +1,9 @@
+const isProduction = process.env.NODE_ENV === 'production'
+const isAnalyze = process.argv.includes('--analyze')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+  publicPath: isProduction ? '/' : '/',
   pluginOptions: {
     prerenderSpa: {
       registry: undefined,
@@ -14,6 +18,11 @@ module.exports = {
       postProcess: route => {
         return route
       }
+    }
+  },
+  chainWebpack: config => {
+    if (isProduction && isAnalyze) {
+      config.plugin('analyzer').use(new BundleAnalyzerPlugin())
     }
   }
 }

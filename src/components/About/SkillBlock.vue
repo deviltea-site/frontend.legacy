@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { SkillData, SkillSortSequence } from '@/interfaces/AboutData'
-import { groupBy } from 'lodash'
+import { groupBy } from 'lodash-es'
 
 const subSortSequence: { [key: string]: string } = {
   category: 'proficiency',

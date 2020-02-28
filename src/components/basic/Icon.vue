@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as icons from '@mdi/js'
+import icons from '@/utils/icon'
 
 @Component({})
 export default class Icon extends Vue {
