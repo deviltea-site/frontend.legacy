@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: darken($grey, 10);
+  background-color: $grey-darken-3;
   z-index: 99999;
   box-shadow: 0 0 10px $dark;
 
@@ -29,7 +29,7 @@
       border: none;
       border-radius: 50%;
       outline: none;
-      background-color: $grey;
+      background-color: $grey-darken-1;
       transition: all 0.3s;
 
       @include mobile {

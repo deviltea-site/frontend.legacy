@@ -128,7 +128,7 @@
             &:active {
               transition: all 0.3s;
               transform: scale(0.98);
-              background-color: darken($primary, 20);
+              background-color: $primary-darken-2;
             }
           }
         }
@@ -178,7 +178,7 @@
 
         .duration {
           margin-bottom: 8px;
-          color: lighten($grey, 20);
+          color: $grey;
           font-size: 0.5rem;
         }
         .title {

@@ -2,7 +2,7 @@
   height: $footer-height;
 
   .copyright-text {
-    color: darken($primary, 15);
+    color: $primary-darken-2;
     font-size: 12px;
     line-height: $footer-height;
     text-align: center;
