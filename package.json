@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mdi/js": "^4.9.95",
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "lodash-es": "^4.17.15",
     "markdown-it": "^10.0.0",
