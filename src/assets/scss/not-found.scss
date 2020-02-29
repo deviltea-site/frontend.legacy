@@ -10,7 +10,6 @@
     color: $primary;
 
     @include mobile {
-      padding-bottom: $navbar-height-mobile;
       font-size: 2rem;
     }
   }

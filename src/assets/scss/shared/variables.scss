@@ -1,6 +1,17 @@
-$mobile-max-width: 600px;
-$tablet-max-width: 1280px;
-$content-max-width: 600px;
-$navbar-height: 76px;
-$navbar-height-mobile: 56px;
-$footer-height: 32px;
+:root {
+  --mobile-max-width: #{$mobile-max-width};
+  --tablet-max-width: #{$tablet-max-width};
+  --content-max-width: 600px;
+  --navbar-height: 76px;
+  --footer-height: 32px;
+}
+
+@include mobile {
+  :root {
+    --navbar-height: 56px;
+  }
+}
+
+$content-max-width: var(--content-max-width);
+$navbar-height: var(--navbar-height);
+$footer-height: var(--footer-height);
