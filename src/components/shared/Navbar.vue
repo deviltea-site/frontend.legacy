@@ -1,5 +1,5 @@
 <template>
-  <nav id="navbar">
+  <nav id="navbar" class="slide-fade-left-in animated">
     <div
       v-for="item in items"
       :key="`navbar-item-${item.name}`"

@@ -1,6 +1,10 @@
 <template>
   <section id="profile" class="about-block">
-    <img class="avatar" :src="profileData.avatarUrl" alt="my handsome avatar" />
+    <img
+      class="avatar slide-fade-right-in animated"
+      :src="profileData.avatarUrl"
+      alt="my handsome avatar"
+    />
     <div class="info">
       <h2 class="underlined">{{ profileData.realname }}</h2>
       <div

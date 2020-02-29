@@ -81,10 +81,12 @@
       height: $avatar-size;
       display: block;
       border-radius: 30%;
+      z-index: 1;
     }
 
     .info {
       margin-left: $space-between-with-header;
+      z-index: 2;
 
       .contacts {
         width: $content-max-width - $avatar-size - $space-between-with-header;
