@@ -25,12 +25,9 @@ export default class App extends Vue {
 
   public detectDeviceType () {
     const windowWidth = window.innerWidth
-    console.log('windowWidth: ', windowWidth)
     const root = document.documentElement
     const mobileMaxWidth = parseInt(getComputedStyle(root).getPropertyValue('--mobile-max-width').replace('px', ''))
-    console.log('mobileMaxWidth: ', mobileMaxWidth)
     const tabletMaxWidth = parseInt(getComputedStyle(root).getPropertyValue('--tablet-max-width').replace('px', ''))
-    console.log('tabletMaxWidth: ', tabletMaxWidth)
     if (windowWidth > tabletMaxWidth) {
       appModule.setDeviceType(DeviceType.Desktop)
     } else if (windowWidth > mobileMaxWidth) {
