@@ -4,7 +4,7 @@
       v-for="item in items"
       :key="`navbar-item-${item.name}`"
       class="navbar__item"
-      :class="{ hidden: !showAllItems }"
+      :class="{ hidden: !isToggled }"
     >
       <a
         class="btn"
@@ -14,7 +14,7 @@
         <Icon :name="item.icon"></Icon>
       </a>
     </div>
-    <div v-if="isMobile" class="navbar__item">
+    <div class="menu-toggle navbar__item">
       <a class="btn" @click="isToggled = !isToggled">
         <Icon :name="menuIcon"></Icon>
       </a>
@@ -25,7 +25,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import Icon from '@/components/basic/Icon.vue'
-import appModule from '@/store/modules/app'
 
 interface NavbarItem {
   name: string;
@@ -53,16 +52,8 @@ export default class Navbar extends Vue {
     }
   ]
 
-  private get isMobile () {
-    return appModule.isMobile
-  }
-
   private get menuIcon () {
-    return this.isMobile && this.isToggled ? 'menu-left' : 'menu-right'
-  }
-
-  private get showAllItems () {
-    return !this.isMobile || (this.isMobile && this.isToggled)
+    return this.isToggled ? 'menu-left' : 'menu-right'
   }
 
   private get currentRouteName () {

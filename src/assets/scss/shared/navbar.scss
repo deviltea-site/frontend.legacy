@@ -19,20 +19,30 @@
 
   .navbar__item {
     max-width: 100%;
-    transition: all 0.1s;
+    transition: all 0.3s;
 
     &:not(:last-child) {
       margin-right: 16px;
     }
 
-    &.hidden {
-      max-width: 0;
-      margin-right: 0;
-      overflow: hidden;
-      transition: all 0.1s;
+    @include mobile {
+      &.hidden {
+        max-width: 0;
+        margin-right: 0;
+        overflow: hidden;
+        transition: all 0.1s;
 
-      .btn {
-        display: none;
+        .btn {
+          display: none;
+        }
+      }
+    }
+
+    &.menu-toggle {
+      display: none;
+
+      @include mobile {
+        display: inline-flex;
       }
     }
 
