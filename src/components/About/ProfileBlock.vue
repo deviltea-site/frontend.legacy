@@ -19,7 +19,7 @@
             target="_blank"
             :aria-label="contact.ariaLabel"
           >
-            <Icon>{{ contact.icon }}</Icon>
+            <Icon :name="contact.icon"></Icon>
           </a>
         </div>
       </div>

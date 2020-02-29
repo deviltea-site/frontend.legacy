@@ -6,7 +6,9 @@ import {
   mdiGithubBox,
   mdiTwitter,
   mdiFacebookBox,
-  mdiInstagram
+  mdiInstagram,
+  mdiMenuLeft,
+  mdiMenuRight
 } from '@mdi/js'
 
 export default {
@@ -17,5 +19,7 @@ export default {
   mdiGithubBox,
   mdiTwitter,
   mdiFacebookBox,
-  mdiInstagram
+  mdiInstagram,
+  mdiMenuLeft,
+  mdiMenuRight
 }

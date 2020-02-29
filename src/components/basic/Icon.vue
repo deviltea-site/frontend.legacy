@@ -13,16 +13,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 import icons from '@/utils/icon'
 
 @Component({})
 export default class Icon extends Vue {
+  @Prop()
+  private name!: string
+
   private get mdiName () {
-    if (!this.$slots.default || !this.$slots.default[0] || !this.$slots.default[0].text) {
-      return ''
-    }
-    return 'mdi' + this.$slots.default[0].text.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join('')
+    return 'mdi' + this.name.trim().split('-').map(word => word[0].toUpperCase() + word.slice(1)).join('')
   }
 
   private get path () {

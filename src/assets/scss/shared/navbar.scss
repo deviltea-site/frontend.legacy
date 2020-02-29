@@ -18,6 +18,24 @@
   }
 
   .navbar__item {
+    max-width: 100%;
+    transition: all 0.1s;
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+
+    &.hidden {
+      max-width: 0;
+      margin-right: 0;
+      overflow: hidden;
+      transition: all 0.1s;
+
+      .btn {
+        display: none;
+      }
+    }
+
     .btn {
       width: 50px;
       height: 50px;
@@ -63,10 +81,6 @@
         transform: scale(0.98);
         background-color: darken($primary, 20);
       }
-    }
-
-    &:not(:last-child) {
-      margin-right: 16px;
     }
   }
 }

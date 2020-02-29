@@ -3,15 +3,20 @@
     <div
       v-for="item in items"
       :key="`navbar-item-${item.name}`"
-      :id="`navbar-item-${item.name}`"
       class="navbar__item"
+      :class="{ hidden: !showAllItems }"
     >
       <a
         class="btn"
         :class="{ active: item.name === currentRouteName }"
         @click="clickItem(item)"
       >
-        <Icon>{{ item.icon }}</Icon>
+        <Icon :name="item.icon"></Icon>
+      </a>
+    </div>
+    <div v-if="isMobile" class="navbar__item">
+      <a class="btn" @click="isToggled = !isToggled">
+        <Icon :name="menuIcon"></Icon>
       </a>
     </div>
   </nav>
@@ -20,6 +25,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import Icon from '@/components/basic/Icon.vue'
+import appModule from '@/store/modules/app'
 
 interface NavbarItem {
   name: string;
@@ -33,6 +39,7 @@ interface NavbarItem {
   }
 })
 export default class Navbar extends Vue {
+  private isToggled = false
   private items: NavbarItem[] = [
     {
       name: 'Home',
@@ -46,6 +53,18 @@ export default class Navbar extends Vue {
     }
   ]
 
+  private get isMobile () {
+    return appModule.isMobile
+  }
+
+  private get menuIcon () {
+    return this.isMobile && this.isToggled ? 'menu-left' : 'menu-right'
+  }
+
+  private get showAllItems () {
+    return !this.isMobile || (this.isMobile && this.isToggled)
+  }
+
   private get currentRouteName () {
     return this.$route.name
   }
@@ -54,10 +73,6 @@ export default class Navbar extends Vue {
     this.$router.push({
       name: item.name
     }).catch(() => null)
-    const el = document.getElementById(`navbar-item-${item.name}`)
-    if (el !== null) {
-      el.blur()
-    }
   }
 }
 </script>
