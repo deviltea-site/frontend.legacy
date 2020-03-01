@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
+import ArticleList from '@/views/ArticleList.vue'
+import Article from '@/views/Article.vue'
 import NotFound from '@/views/NotFound.vue'
 import head from '@/utils/head'
 
@@ -24,6 +26,16 @@ const routes: RouteConfig[] = [
       title: '關於我',
       description: '關於 DevilTea 的一些資訊 ＯｗＯ'
     }
+  },
+  {
+    path: '/articles',
+    name: 'ArticleList',
+    component: ArticleList
+  },
+  {
+    path: '/articles/:articleId',
+    name: 'Article',
+    component: Article
   },
   {
     path: '/404',
