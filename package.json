@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:analize": "vue-cli-service build --analyze",
+    "build": "npm run generate-api && vue-cli-service build",
+    "build:analyze": "npm run build -- --analyze",
+    "generate-api": "node scripts/generateFakeAPI.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
