@@ -1,7 +1,8 @@
 :root {
   --mobile-max-width: #{$mobile-max-width};
   --tablet-max-width: #{$tablet-max-width};
-  --content-max-width: 600px;
+  --view-view-padding: 32px;
+  --content-max-width: 800px;
   --navbar-height: 76px;
   --footer-height: 32px;
 }
@@ -12,6 +13,7 @@
   }
 }
 
+$view-padding: var(--view-view-padding);
 $content-max-width: var(--content-max-width);
 $navbar-height: var(--navbar-height);
 $footer-height: var(--footer-height);

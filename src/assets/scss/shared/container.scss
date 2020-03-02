@@ -1,5 +1,6 @@
 .view-container {
-  padding-top: $navbar-height;
+  padding: $view-padding;
+  padding-top: calc(#{$navbar-height} + #{$view-padding});
   max-width: 100%;
   min-height: calc(100% - #{$footer-height});
   overflow-x: hidden;
@@ -11,4 +12,5 @@
 
 .content-container {
   max-width: $content-max-width;
+  margin: 0 auto;
 }

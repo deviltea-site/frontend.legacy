@@ -12,18 +12,18 @@
     }
     .first-line {
       padding-top: 2rem;
-      font-size: 3.5rem;
+      font-size: 6vw;
       animation-delay: 0.5s;
     }
     .second-line {
       color: $light;
-      font-size: 10rem;
+      font-size: 15vw;
       text-align: center;
       animation-delay: 1.5s;
     }
     .third-line {
       padding-bottom: 3.5rem;
-      font-size: 2rem;
+      font-size: 3vw;
       text-align: end;
       animation-delay: 1s;
     }
@@ -37,7 +37,6 @@
       }
       .second-line {
         margin-bottom: 16px;
-        font-size: 4.5rem;
       }
       .third-line {
         padding-bottom: 2.5rem;

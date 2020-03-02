@@ -1,17 +1,5 @@
 #about {
   $space-between-with-header: 32px;
-  $view-container-horizontal-padding: 32px;
-
-  &.view-container {
-    @include mobile {
-      padding-left: $view-container-horizontal-padding;
-      padding-right: $view-container-horizontal-padding;
-    }
-  }
-
-  .content-container {
-    margin: 0 auto;
-  }
 
   h2 {
     color: $light;
@@ -44,7 +32,7 @@
     }
   }
 
-  .about-block {
+  .about-block:not(#profile) {
     margin-top: 60px;
   }
 
@@ -73,6 +61,8 @@
     $avatar-size: 250px;
     $avatar-size-mobile: 200px;
 
+    margin: auto;
+    max-width: 600px;
     display: flex;
     align-items: center;
 
@@ -85,10 +75,11 @@
     }
 
     .info {
-      margin-left: $space-between-with-header;
+      margin-left: auto;
       z-index: 2;
 
       .contacts {
+        max-width: 250px;
         width: calc(
           #{$content-max-width} - #{$avatar-size} - #{$space-between-with-header}
         );
@@ -152,6 +143,11 @@
         margin-top: $space-between-with-header;
         margin-left: 0;
         text-align: center;
+
+        .contacts {
+          max-width: 500px;
+          margin: auto;
+        }
 
         h2.underlined::after {
           width: 100%;
