@@ -4,17 +4,30 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run generate-api && vue-cli-service build",
+    "build": "npm run pre-build && vue-cli-service build",
     "build:analyze": "npm run build -- --analyze",
+    "pre-build": "npm run generate-api && npm run generate-icons-import",
     "generate-api": "node scripts/generateFakeAPI.js",
+    "generate-icons-import": "node scripts/generateIconsImportion.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/js": "^4.9.95",
+    "@types/prismjs": "^1.16.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "lodash-es": "^4.17.15",
     "markdown-it": "^10.0.0",
+    "markdown-it-abbr": "^1.0.4",
+    "markdown-it-container": "^2.0.0",
+    "markdown-it-deflist": "^2.0.3",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-footnote": "^3.0.2",
+    "markdown-it-ins": "^3.0.0",
+    "markdown-it-mark": "^3.0.0",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "prismjs": "^1.19.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^8.3.0",
@@ -35,6 +48,7 @@
     "@vue/cli-service": "~4.2.0",
     "@vue/eslint-config-standard": "^5.1.0",
     "@vue/eslint-config-typescript": "^5.0.1",
+    "babel-plugin-prismjs": "^2.0.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
@@ -48,7 +62,7 @@
     "typescript": "~3.7.5",
     "vue-cli-plugin-prerender-spa": "~1.1.6",
     "vue-template-compiler": "^2.6.11",
-    "webpack-bundle-analyzer": "^3.6.0"
+    "webpack-bundle-analyzer": "^3.6.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

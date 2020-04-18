@@ -1,0 +1,29 @@
+{
+  "icons": [
+    "mdiHome",
+    "mdiInformation",
+    "mdiTelegram",
+    "mdiEmail",
+    "mdiGithubBox",
+    "mdiTwitter",
+    "mdiFacebookBox",
+    "mdiInstagram",
+    "mdiMenuLeft",
+    "mdiMenuRight",
+    "mdiBookOpenVariant"
+  ],
+  "highlightLanguages": [
+    { "name": "javascript", "alias": "js" },
+    { "name": "css" },
+    { "name": "markup" },
+    { "name": "html" },
+    { "name": "json" },
+    { "name": "typescript", "alias": "ts" },
+    { "name": "markdown", "alias": "md" },
+    { "name": "yaml", "alias": "yml" },
+    { "name": "scss" },
+    { "name": "python", "alias": "py" },
+    { "name": "dockerfile", "alias": "docker" },
+    { "name": "git" }
+  ]
+}

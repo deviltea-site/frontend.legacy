@@ -30,7 +30,11 @@ const routes: RouteConfig[] = [
   {
     path: '/articles',
     name: 'ArticleList',
-    component: ArticleList
+    component: ArticleList,
+    meta: {
+      title: '文章列表',
+      description: '文章們ㄉ列表'
+    }
   },
   {
     path: '/articles/:articleId',
@@ -48,12 +52,7 @@ const routes: RouteConfig[] = [
   },
   {
     path: '*',
-    name: 'NotFound',
-    component: NotFound,
-    meta: {
-      title: '404 Not Found',
-      description: '找不到這個頁面 ＱＡＱ'
-    }
+    redirect: '/404'
   }
 ]
 

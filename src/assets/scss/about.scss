@@ -2,20 +2,20 @@
   $space-between-with-header: 32px;
 
   h2 {
-    color: $light;
+    color: $primary;
     margin-bottom: $space-between-with-header;
     font-size: 2.5rem;
   }
 
   h3 {
-    color: $light;
+    color: $primary;
     margin-bottom: $space-between-with-header;
     font-size: 2rem;
   }
 
   h4 {
     margin-bottom: 16px;
-    color: $light;
+    color: $primary;
     font-size: 1.5rem;
   }
 
@@ -70,7 +70,8 @@
       width: $avatar-size;
       height: $avatar-size;
       display: block;
-      border-radius: 30%;
+      border-radius: 50%;
+      box-shadow: 5px 0 $primary, 15px 0 $primary;
       z-index: 1;
     }
 
@@ -93,39 +94,6 @@
 
         .contact {
           text-align: center;
-
-          &-btn {
-            width: 50px;
-            height: 50px;
-            padding: 0;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            border-radius: 50%;
-            outline: none;
-            background-color: $grey;
-            transition: all 0.3s;
-
-            .icon {
-              width: 32px;
-              height: 32px;
-              color: $light;
-            }
-
-            &:hover {
-              cursor: pointer;
-              transition: all 0.3s;
-              transform: scale(1.02);
-              background-color: $primary;
-            }
-
-            &:active {
-              transition: all 0.3s;
-              transform: scale(0.98);
-              background-color: $primary-darken-2;
-            }
-          }
         }
       }
     }
@@ -164,7 +132,7 @@
   #intro {
     p {
       font-size: 1.15rem;
-      color: $light;
+      color: $grey;
       line-height: 2;
     }
   }
@@ -178,11 +146,11 @@
 
         .duration {
           margin-bottom: 8px;
-          color: $grey;
+          color: $grey-lighten-2;
           font-size: 0.5rem;
         }
         .title {
-          color: $light;
+          color: $grey;
           font-size: 1.15rem;
           margin-bottom: 8px;
         }

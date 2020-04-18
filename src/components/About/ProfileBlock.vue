@@ -1,7 +1,7 @@
 <template>
   <section id="profile" class="about-block">
     <img
-      class="avatar slide-fade-right-in animated"
+      class="avatar"
       :src="profileData.avatarUrl"
       alt="my handsome avatar"
     />
@@ -14,7 +14,7 @@
       >
         <div v-for="contact in row" :key="contact.name" class="contact">
           <a
-            class="contact-btn"
+            class="icon-circular-btn"
             :href="contact.href"
             target="_blank"
             :aria-label="contact.ariaLabel"

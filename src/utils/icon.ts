@@ -1,3 +1,4 @@
+
 import {
   mdiHome,
   mdiInformation,
@@ -8,7 +9,8 @@ import {
   mdiFacebookBox,
   mdiInstagram,
   mdiMenuLeft,
-  mdiMenuRight
+  mdiMenuRight,
+  mdiBookOpenVariant
 } from '@mdi/js'
 
 export default {
@@ -21,5 +23,6 @@ export default {
   mdiFacebookBox,
   mdiInstagram,
   mdiMenuLeft,
-  mdiMenuRight
+  mdiMenuRight,
+  mdiBookOpenVariant
 }

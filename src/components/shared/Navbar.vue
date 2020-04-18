@@ -6,13 +6,13 @@
       class="navbar__item"
       :class="{ hidden: !isToggled }"
     >
-      <a
-        class="btn"
+      <router-link
+        class="icon-circular-btn"
         :class="{ active: item.name === currentRouteName }"
-        @click="clickItem(item)"
+        :to="{ name: item.name }"
       >
         <Icon :name="item.icon"></Icon>
-      </a>
+      </router-link>
     </div>
     <div class="menu-toggle navbar__item">
       <a class="btn" @click="isToggled = !isToggled">
@@ -49,6 +49,11 @@ export default class Navbar extends Vue {
       name: 'About',
       icon: 'information',
       ariaLabel: 'click to go to About page'
+    },
+    {
+      name: 'ArticleList',
+      icon: 'book-open-variant',
+      ariaLabel: 'click to go to ArticleList page'
     }
   ]
 

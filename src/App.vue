@@ -39,13 +39,15 @@ export default class App extends Vue {
 
   public startToDetectDeviceType () {
     this.detectDeviceType()
-    window.addEventListener('resize', () => {
-      this.detectDeviceType()
-    })
+    window.addEventListener('resize', this.detectDeviceType)
   }
 
   public mounted () {
     this.startToDetectDeviceType()
+  }
+
+  public beforeDestroy () {
+    window.removeEventListener('resize', this.detectDeviceType)
   }
 }
 </script>

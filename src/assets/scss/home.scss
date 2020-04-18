@@ -17,6 +17,7 @@
     }
     .second-line {
       color: $light;
+      -webkit-text-stroke: 1px $primary;
       font-size: 15vw;
       text-align: center;
       animation-delay: 1.5s;
@@ -40,7 +41,6 @@
       }
       .third-line {
         padding-bottom: 2.5rem;
-        font-size: 1.25rem;
         text-align: center;
       }
     }

@@ -7,9 +7,12 @@
 @import "shared/navbar";
 @import "shared/footer";
 @import "shared/animate";
+@import "shared/icon-circular-btn";
 
 @import "home";
 @import "about";
+@import "article-list";
+@import "article";
 @import "not-found";
 
 * {
@@ -23,6 +26,5 @@ body {
 
 #app {
   height: 100%;
-  background-color: $dark;
   overflow: auto;
 }
