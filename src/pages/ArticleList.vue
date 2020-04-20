@@ -1,61 +1,84 @@
 <template>
-  <main id="article-list" class="view-container content-container">
-    <template v-for="(meta, index) in sortedArticlesMeta">
-      <div
-        v-if="index !== 0"
-        class="divider"
-        :key="`article-info-divider-${index}`"
-      ></div>
-      <ArticleListItem
-        :key="`article-info-${meta.id}`"
-        :article-meta="meta"
-      ></ArticleListItem>
-    </template>
+  <main id="article-list" class="view-container content-container" :class="{
+    loading: isLoading
+  }">
+    <CircularProgress v-if="isLoading" color="#ccc"></CircularProgress>
+    <ul v-else>
+      <template v-for="(meta, index) in sortedArticlesMeta">
+        <div
+          v-if="index !== 0"
+          class="divider"
+          :key="`article-info-divider-${index}`"
+        ></div>
+        <ArticleListItem
+          :key="`article-info-${meta.id}`"
+          :article-meta="meta"
+        ></ArticleListItem>
+      </template>
+    </ul>
   </main>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import ArticleListItem from '@/components/ArticleList/ArticleListItem.vue'
+import CircularProgress from '@/components/basic/CircularProgress.vue'
 import { getArticleList, getArticleMeta } from '@/controllers/articles'
 import { ArticleMeta } from '../interfaces/API'
+import { delay } from '@/utils/util'
 
 const COUNT_OF_ARTICLES_PER_PAGE = 10
 
 @Component({
   components: {
-    ArticleListItem
+    ArticleListItem,
+    CircularProgress
   }
 })
 export default class ArticleList extends Vue {
   private currentPage = 0
-  private articles: string[] = []
+  private articlesId: string[] = []
   private articlesMeta: ArticleMeta[] = []
+  private isLoading = false
 
   private get sortedArticlesMeta () {
     return this.articlesMeta
       .sort((a, b) => new Date(a.createdTime).getTime() - new Date(b.createdTime).getTime())
   }
 
-  private async loadNextPage () {
+  private async loadAllArticlesId () {
+    this.isLoading = true
+    const { articles } = await getArticleList()
+    this.articlesId = articles
+    this.isLoading = false
+  }
+
+  private async loadNextPageMetas () {
+    this.isLoading = true
     const nextPage = this.currentPage + 1
-    const articles = this.articles.filter((id, index) => {
+    const articlesId = this.articlesId.filter((id, index) => {
       return index >= (nextPage - 1) * COUNT_OF_ARTICLES_PER_PAGE &&
               index < nextPage * COUNT_OF_ARTICLES_PER_PAGE
     })
 
-    if (articles.length === 0) return
+    if (articlesId.length === 0) {
+      await delay(300)
+      this.isLoading = false
+      return
+    }
 
-    articles.forEach(async (id) => {
-      this.articlesMeta.push(await getArticleMeta(id))
-    })
+    const nextPageMetas = await Promise.all(articlesId.map((id) => getArticleMeta(id)))
+    this.articlesMeta.push(...nextPageMetas)
+
     this.currentPage += 1
+
+    await delay(500)
+    this.isLoading = false
   }
 
   private async loadInitData () {
-    const { articles } = await getArticleList()
-    this.articles = articles
-    await this.loadNextPage()
+    await this.loadAllArticlesId()
+    await this.loadNextPageMetas()
   }
 
   public async mounted () {
