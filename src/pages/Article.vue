@@ -15,11 +15,14 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { getArticleMeta, getArticleContent } from '@/controllers/articles'
+import { ArticleMeta } from '@/interfaces/API'
 import renderMarkdown from '@/utils/renderMarkdown'
+import head from '../utils/head'
 
 @Component({})
 export default class Article extends Vue {
   private markdownContent = ''
+  private meta: ArticleMeta | null = null
 
   private get renderedHtml () {
     return renderMarkdown(this.markdownContent)
@@ -28,6 +31,7 @@ export default class Article extends Vue {
   private async loadInitData () {
     try {
       const articleId = parseInt(this.$route.params.articleId)
+      this.meta = await getArticleMeta(articleId)
       this.markdownContent = await getArticleContent(articleId)
     } catch (error) {
       await this.$router.replace({
@@ -36,8 +40,19 @@ export default class Article extends Vue {
     }
   }
 
+  private updateHead () {
+    if (this.meta === null) return
+    const { title, description } = this.meta
+    if (title) {
+      head.title(title)
+      head.ogTitle(title)
+    }
+    if (description) head.ogDescription(description)
+  }
+
   public async mounted () {
     await this.loadInitData()
+    this.updateHead()
     this.$emit('render')
   }
 }

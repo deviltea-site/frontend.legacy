@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 const titleDOM = document.querySelector('head>title') as HTMLElement
 const metaDOM = Array.from(document.querySelectorAll('head>meta')) as HTMLElement[]
 
@@ -29,11 +30,11 @@ const head = {
     headPayloads['og:type'].setAttribute('content', defaultValue.type)
     headPayloads['og:site_name'].setAttribute('content', defaultValue.title)
   },
-  title (text: string) {
-    headPayloads.title.innerText = `${text} | ${defaultValue.title}`
+  title (text: string, withSuffix = true) {
+    headPayloads.title.innerText = `${text}` + (withSuffix ? ` | ${defaultValue.title}` : '')
   },
-  ogTitle (text: string) {
-    headPayloads['og:title'].setAttribute('content', `${text} | ${defaultValue.title}`)
+  ogTitle (text: string, withSuffix = true) {
+    headPayloads['og:title'].setAttribute('content', `${text}` + (withSuffix ? ` | ${defaultValue.title}` : ''))
   },
   ogDescription (text: string) {
     headPayloads['og:description'].setAttribute('content', text)

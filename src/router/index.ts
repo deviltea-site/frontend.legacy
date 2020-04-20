@@ -15,7 +15,8 @@ const routes: RouteConfig[] = [
     name: 'Home',
     component: Home,
     meta: {
-      title: '首頁'
+      title: 'DevilTea',
+      withSuffix: false
     }
   },
   {
@@ -63,12 +64,16 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const { title, description } = to.meta
-  if (title) {
-    head.title(title)
-    head.ogTitle(title)
+  if (to.name !== 'Article') {
+    const { title, description, withSuffix = true } = to.meta
+    if (title) {
+      head.title(title, withSuffix)
+      head.ogTitle(title, withSuffix)
+    }
+    if (description) head.ogDescription(description)
+    next()
+    return
   }
-  if (description) head.ogDescription(description)
   next()
 })
 
