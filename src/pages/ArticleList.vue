@@ -1,8 +1,15 @@
 <template>
   <main id="article-list" class="view-container content-container">
     <template v-for="(meta, index) in sortedArticlesMeta">
-      <div v-if="index !== 0" class="divider" :key="`article-info-divider-${index}`"></div>
-      <ArticleListItem :key="`article-info-${meta.id}`" :article-meta="meta"></ArticleListItem>
+      <div
+        v-if="index !== 0"
+        class="divider"
+        :key="`article-info-divider-${index}`"
+      ></div>
+      <ArticleListItem
+        :key="`article-info-${meta.id}`"
+        :article-meta="meta"
+      ></ArticleListItem>
     </template>
   </main>
 </template>
@@ -22,11 +29,12 @@ const COUNT_OF_ARTICLES_PER_PAGE = 10
 })
 export default class ArticleList extends Vue {
   private currentPage = 0
-  private articles: number[] = []
+  private articles: string[] = []
   private articlesMeta: ArticleMeta[] = []
 
   private get sortedArticlesMeta () {
-    return this.articlesMeta.sort((a, b) => a.id - b.id)
+    return this.articlesMeta
+      .sort((a, b) => new Date(a.createdTime).getTime() - new Date(b.createdTime).getTime())
   }
 
   private async loadNextPage () {

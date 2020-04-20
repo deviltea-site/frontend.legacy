@@ -3,7 +3,7 @@
 type Data = ArticleMeta | ArticleList | Category | CategoryList | Tag | TagList
 
 interface ArticleMeta {
-  id: number;
+  id: string;
   title: string;
   description: string;
   category: string;
@@ -157,7 +157,8 @@ async function generateTagsData (metas) {
  *
  */
 async function generate () {
-  const metas = (await readAllArticlesMeta()).sort((a, b) => a.id - b.id)
+  const metas = (await readAllArticlesMeta())
+    .sort((a, b) => new Date(a.createdTime).getTime() - new Date(b.createdTime).getTime())
   await fs.promises.rmdir(apiDir, { recursive: true })
   await generateArticlesData(metas)
   await generateCategoriesData(metas)

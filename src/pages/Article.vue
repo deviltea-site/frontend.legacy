@@ -30,7 +30,7 @@ export default class Article extends Vue {
 
   private async loadInitData () {
     try {
-      const articleId = parseInt(this.$route.params.articleId)
+      const articleId = this.$route.params.articleId
       this.meta = await getArticleMeta(articleId)
       this.markdownContent = await getArticleContent(articleId)
     } catch (error) {

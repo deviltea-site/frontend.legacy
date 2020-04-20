@@ -1,5 +1,5 @@
 export interface ArticleMeta {
-  id: number;
+  id: string;
   title: string;
   thumb?: string;
   description: string;
@@ -10,7 +10,7 @@ export interface ArticleMeta {
 }
 
 export interface ArticleList {
-  articles: number[];
+  articles: string[];
 }
 
 export interface CategoryList {
@@ -19,7 +19,7 @@ export interface CategoryList {
 
 export interface Category {
   name: string;
-  articles: number[];
+  articles: string[];
 }
 
 export interface TagList {
@@ -28,5 +28,5 @@ export interface TagList {
 
 export interface Tag {
   name: string;
-  articles: number[];
+  articles: string[];
 }
