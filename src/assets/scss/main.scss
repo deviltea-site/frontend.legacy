@@ -9,11 +9,11 @@
 @import "shared/animate";
 @import "shared/icon-circular-btn";
 
-@import "home";
-@import "about";
-@import "article-list";
-@import "article";
-@import "not-found";
+@import "pages/home";
+@import "pages/about";
+@import "pages/article-list";
+@import "pages/article";
+@import "pages/not-found";
 
 * {
   box-sizing: border-box;

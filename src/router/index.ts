@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '@/views/Home.vue'
-import About from '@/views/About.vue'
-import ArticleList from '@/views/ArticleList.vue'
-import Article from '@/views/Article.vue'
-import NotFound from '@/views/NotFound.vue'
+import Home from '@/pages/Home.vue'
+import About from '@/pages/About.vue'
+import ArticleList from '@/pages/ArticleList.vue'
+import Article from '@/pages/Article.vue'
+import NotFound from '@/pages/NotFound.vue'
 import head from '@/utils/head'
 
 Vue.use(VueRouter)
