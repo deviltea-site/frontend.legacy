@@ -6,7 +6,7 @@ export interface ArticleMeta {
   category: string;
   tags: string[];
   createdTime: string;
-  updatedTime?: string;
+  updatedTime: string | null;
 }
 
 export interface ArticleList {
