@@ -49,24 +49,8 @@ export default class ArticleList extends Vue {
   private filterOptions: FilterOption[] = []
 
   @Watch('$route')
-  private onRouteChange (newRoute: Route) {
-    const filterOptions: FilterOption[] = []
-    const { query } = newRoute
-    if (query.tags) {
-      (query.tags as string).split(',').forEach((tag) => filterOptions.push({
-        accordingTo: 'tag',
-        value: tag
-      }))
-    }
-
-    if (query.categories) {
-      (query.categories as string).split(',').forEach((category) => filterOptions.push({
-        accordingTo: 'category',
-        value: category
-      }))
-    }
-
-    this.filterOptions = filterOptions
+  private async onRouteChange (newRoute: Route) {
+    await this.detectFilterOptions(newRoute)
   }
 
   private get filteredArticlesMeta () {
@@ -125,8 +109,33 @@ export default class ArticleList extends Vue {
     await this.loadNextPageMetas()
   }
 
+  private async detectFilterOptions (route: Route) {
+    this.isLoading = true
+    const filterOptions: FilterOption[] = []
+    const { query } = route
+    if (query.tags) {
+      (query.tags as string).split(',').forEach((tag) => filterOptions.push({
+        accordingTo: 'tag',
+        value: tag
+      }))
+    }
+
+    if (query.categories) {
+      (query.categories as string).split(',').forEach((category) => filterOptions.push({
+        accordingTo: 'category',
+        value: category
+      }))
+    }
+
+    this.filterOptions = filterOptions
+
+    await delay(300)
+    this.isLoading = false
+  }
+
   public async mounted () {
     await this.loadInitData()
+    await this.detectFilterOptions(this.$route)
     this.$emit('render')
   }
 }
