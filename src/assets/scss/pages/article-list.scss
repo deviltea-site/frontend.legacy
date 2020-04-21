@@ -9,7 +9,7 @@
 
   .divider {
     margin: 16px auto;
-    width: 300px;
+    max-width: 300px;
     height: 1px;
     background-color: rgba($grey-darken-4, 0.2);
   }
@@ -161,6 +161,8 @@
     }
 
     @include mobile {
+      padding: 0;
+
       .thumb {
         width: 100%;
         padding-top: calc(100% * 0.75);
