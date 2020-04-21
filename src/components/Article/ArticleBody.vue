@@ -15,7 +15,7 @@
             >{{ meta.category }}</router-link
           >
         </div>
-        <div class="info-meta__tags">
+        <div v-if="meta.tags.length > 0" class="info-meta__tags">
           <span class="label">標籤：</span>
           <router-link
             v-for="tag in meta.tags"
