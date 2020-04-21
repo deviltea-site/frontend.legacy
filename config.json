@@ -10,7 +10,8 @@
     "mdiInstagram",
     "mdiMenuLeft",
     "mdiMenuRight",
-    "mdiBookOpenVariant"
+    "mdiBookOpenVariant",
+    "mdiArrowCollapseUp"
   ],
   "highlightLanguages": [
     { "name": "javascript", "alias": "js" },
