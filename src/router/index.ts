@@ -73,6 +73,7 @@ router.beforeEach((to, from, next) => {
     }
     if (description) head.ogDescription(description)
   }
+  head.ogUrl(`https://deviltea.me${to.fullPath}`)
   VueScrollto.scrollTo('#top-anchor')
   next()
 })
