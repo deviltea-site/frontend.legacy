@@ -24,6 +24,7 @@
     { "name": "scss" },
     { "name": "python", "alias": "py" },
     { "name": "dockerfile", "alias": "docker" },
-    { "name": "git" }
+    { "name": "git" },
+    { "name": "sql" }
   ]
 }
