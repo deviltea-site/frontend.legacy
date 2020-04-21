@@ -16,7 +16,7 @@
 
   h2 {
     font-size: 12rem;
-    color: $light;
+    color: $grey-lighten-3;
 
     @include mobile {
       font-size: 6rem;
