@@ -30,4 +30,19 @@ body {
 #app {
   height: 100%;
   overflow: auto;
+
+  .scroll-to-top-btn {
+    position: fixed;
+    right: calc(((100% - #{$content-max-width}) / 2) + 0.5rem);
+    bottom: 3rem;
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 700px) {
+      right: 0.5rem;
+    }
+  }
 }

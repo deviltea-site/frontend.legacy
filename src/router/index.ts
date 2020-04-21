@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+import VueScrollto from 'vue-scrollto'
 import Home from '@/pages/Home.vue'
 import About from '@/pages/About.vue'
 import ArticleList from '@/pages/ArticleList.vue'
@@ -71,9 +72,8 @@ router.beforeEach((to, from, next) => {
       head.ogTitle(title, withSuffix)
     }
     if (description) head.ogDescription(description)
-    next()
-    return
   }
+  VueScrollto.scrollTo('#top-anchor')
   next()
 })
 
