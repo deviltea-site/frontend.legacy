@@ -6,7 +6,7 @@
       <router-view class="fade-in animated" @render="dispatchRenderEvent" />
     </keep-alive>
     <Footer></Footer>
-    <button class="scroll-to-top-btn icon-circular-btn" v-scroll-to="'#top-anchor'">
+    <button v-if="showScrollToTopButton" class="scroll-to-top-btn icon-circular-btn" v-scroll-to="'#top-anchor'">
       <Icon name="arrow-collapse-up"></Icon>
     </button>
   </div>
@@ -28,6 +28,10 @@ import appModule, { DeviceType } from '@/store/modules/app'
 })
 export default class App extends Vue {
   private needKeepAliveRoutesName = ['Home', 'About', 'ArticleList', 'NotFound']
+
+  private get showScrollToTopButton () {
+    return ['About', 'ArticleList', 'Article'].includes(this.$route.name || '')
+  }
 
   public dispatchRenderEvent () {
     document.dispatchEvent(new Event('x-app-rendered'))
