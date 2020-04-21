@@ -1,15 +1,14 @@
 :root {
   --mobile-max-width: #{$mobile-max-width};
   --tablet-max-width: #{$tablet-max-width};
-  --view-view-padding: 32px;
+  --view-view-padding: 2rem;
   --content-max-width: 800px;
   --navbar-height: 76px;
   --footer-height: 48px;
-}
 
-@include mobile {
-  :root {
+  @include mobile {
     --navbar-height: 56px;
+    --view-view-padding: 1rem;
   }
 }
 
