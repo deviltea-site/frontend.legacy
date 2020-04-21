@@ -4,7 +4,7 @@
     :to="{ name: 'Article', params: { articleId: articleMeta.id } }"
   >
     <div class="thumb">
-      <img v-if="articleMeta.thumb" :src="articleMeta.thumb" />
+      <LazyImage v-if="articleMeta.thumb" :src="articleMeta.thumb" />
       <div v-else class="icon-container">
         <Icon name="book-open-variant"></Icon>
       </div>
@@ -44,11 +44,13 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Icon from '@/components/basic/Icon.vue'
+import LazyImage from '@/components/basic/LazyImage.vue'
 import { ArticleMeta } from '@/interfaces/API'
 
 @Component({
   components: {
-    Icon
+    Icon,
+    LazyImage
   }
 })
 export default class ArticleListItem extends Vue {
