@@ -188,6 +188,13 @@
           }
         }
       }
+
+      dl {
+        * {
+          max-width: 100%;
+          overflow-x: auto;
+        }
+      }
     }
   }
 }
