@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <router-view class="fade-in animated" @render="dispatchRenderEvent" />
+    <keep-alive :include="needKeepAliveRoutesName">
+      <router-view class="fade-in animated" @render="dispatchRenderEvent" />
+    </keep-alive>
     <Footer></Footer>
   </div>
 </template>
@@ -19,6 +21,8 @@ import appModule, { DeviceType } from '@/store/modules/app'
   }
 })
 export default class App extends Vue {
+  private needKeepAliveRoutesName = ['Home', 'About', 'ArticleList', 'NotFound']
+
   public dispatchRenderEvent () {
     document.dispatchEvent(new Event('x-app-rendered'))
   }

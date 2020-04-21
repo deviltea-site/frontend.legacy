@@ -15,8 +15,10 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-@Component({})
-export default class About extends Vue {
+@Component({
+  name: 'Home'
+})
+export default class Home extends Vue {
   public mounted () {
     this.$emit('render')
   }
