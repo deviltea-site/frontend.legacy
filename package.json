@@ -16,6 +16,7 @@
     "@types/prismjs": "^1.16.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "jszip": "^3.4.0",
     "lodash-es": "^4.17.15",
     "markdown-it": "^10.0.0",
     "markdown-it-abbr": "^1.0.4",
