@@ -20,14 +20,20 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import ArticleListItem from '@/components/ArticleList/ArticleListItem.vue'
 import CircularProgress from '@/components/basic/CircularProgress.vue'
 import { getArticleList, getArticleMeta } from '@/controllers/articles'
 import { ArticleMeta } from '../interfaces/API'
 import { delay } from '@/utils/util'
+import { Route } from 'vue-router'
 
 const COUNT_OF_ARTICLES_PER_PAGE = 10
+
+interface FilterOption {
+  accordingTo: 'category' | 'tag';
+  value: string;
+}
 
 @Component({
   components: {
@@ -40,9 +46,47 @@ export default class ArticleList extends Vue {
   private articlesId: string[] = []
   private articlesMeta: ArticleMeta[] = []
   private isLoading = false
+  private filterOptions: FilterOption[] = []
+
+  @Watch('$route')
+  private onRouteChange (newRoute: Route) {
+    const filterOptions: FilterOption[] = []
+    const { query } = newRoute
+    if (query.tags) {
+      (query.tags as string).split(',').forEach((tag) => filterOptions.push({
+        accordingTo: 'tag',
+        value: tag
+      }))
+    }
+
+    if (query.categories) {
+      (query.categories as string).split(',').forEach((category) => filterOptions.push({
+        accordingTo: 'category',
+        value: category
+      }))
+    }
+
+    this.filterOptions = filterOptions
+  }
+
+  private get filteredArticlesMeta () {
+    if (this.filterOptions.length === 0) {
+      return this.articlesMeta
+    }
+    return this.articlesMeta
+      .filter((articleMeta) => {
+        const options = this.filterOptions
+        const handlers = {
+          category: (option: FilterOption) => articleMeta.category === option.value,
+          tag: (option: FilterOption) => articleMeta.tags.includes(option.value)
+        }
+        return options.map((option) => handlers[option.accordingTo](option))
+          .some((match) => match)
+      })
+  }
 
   private get sortedArticlesMeta () {
-    return this.articlesMeta
+    return this.filteredArticlesMeta
       .sort((a, b) => new Date(a.createdTime).getTime() - new Date(b.createdTime).getTime())
   }
 

@@ -21,7 +21,7 @@
           <span class="label">分類：</span>
           <router-link
             class="link"
-            :to="{ name: 'ArticleList', query: { category: articleMeta.category } }"
+            :to="{ name: 'ArticleList', query: { categories: articleMeta.category } }"
             >{{ articleMeta.category }}</router-link
           >
         </div>
@@ -31,7 +31,7 @@
             v-for="tag in articleMeta.tags"
             :key="`article-${articleMeta.id}-tag-${tag}`"
             class="tag"
-            :to="{ name: 'ArticleList', query: { tag } }"
+            :to="{ name: 'ArticleList', query: { tags: tag } }"
           >
             {{ tag }}
           </router-link>
