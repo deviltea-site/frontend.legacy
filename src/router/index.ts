@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import VueScrollto from 'vue-scrollto'
 import Home from '@/pages/Home.vue'
 import About from '@/pages/About.vue'
 import ArticleList from '@/pages/ArticleList.vue'
 import Article from '@/pages/Article.vue'
 import NotFound from '@/pages/NotFound.vue'
-import head from '@/utils/head'
 
 Vue.use(VueRouter)
 
@@ -62,20 +60,6 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'Article') {
-    const { title, description, withSuffix = true } = to.meta
-    if (title) {
-      head.title(title, withSuffix)
-      head.ogTitle(title, withSuffix)
-    }
-    if (description) head.ogDescription(description)
-  }
-  head.ogUrl(`https://deviltea.me${to.fullPath}`)
-  VueScrollto.scrollTo('#top-anchor')
-  next()
 })
 
 export default router

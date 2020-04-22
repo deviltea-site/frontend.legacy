@@ -3,21 +3,27 @@
     <div id="top-anchor"></div>
     <Navbar></Navbar>
     <keep-alive :include="needKeepAliveRoutesName">
-      <router-view class="fade-in animated" @render="dispatchRenderEvent" />
+      <router-view class="fade-in animated" @render="onPageRender" />
     </keep-alive>
     <Footer></Footer>
-    <button v-if="showScrollToTopButton" class="scroll-to-top-btn icon-circular-btn" v-scroll-to="'#top-anchor'">
+    <button
+      v-if="showScrollToTopButton"
+      class="scroll-to-top-btn icon-circular-btn"
+      v-scroll-to="'#top-anchor'"
+    >
       <Icon name="arrow-collapse-up"></Icon>
     </button>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import { Route } from 'vue-router'
 import Navbar from '@/components/shared/Navbar.vue'
 import Footer from '@/components/shared/Footer.vue'
 import Icon from '@/components/basic/Icon.vue'
 import appModule, { DeviceType } from '@/store/modules/app'
+import head from './utils/head'
 
 @Component({
   components: {
@@ -33,11 +39,23 @@ export default class App extends Vue {
     return ['About', 'ArticleList', 'Article'].includes(this.$route.name || '')
   }
 
-  public dispatchRenderEvent () {
+  private async onPageRender () {
+    this.detectHeadMeta(this.$route)
+    await this.$nextTick()
+    this.detectRouteScroll(this.$route)
     document.dispatchEvent(new Event('x-app-rendered'))
   }
 
-  public detectDeviceType () {
+  private detectRouteScroll (route: Route) {
+    const hashValue = route.hash.substr(1)
+    if (hashValue) {
+      this.$scrollTo(`#${CSS.escape(hashValue)}`)
+    } else {
+      this.$scrollTo('#top-anchor')
+    }
+  }
+
+  private detectDeviceType () {
     const windowWidth = window.innerWidth
     const root = document.documentElement
     const mobileMaxWidth = parseInt(getComputedStyle(root).getPropertyValue('--mobile-max-width').replace('px', ''))
@@ -51,16 +69,37 @@ export default class App extends Vue {
     }
   }
 
-  public startToDetectDeviceType () {
+  private startToDetectDeviceType () {
     this.detectDeviceType()
     window.addEventListener('resize', this.detectDeviceType)
   }
 
-  public mounted () {
+  private detectHeadMeta (route: Route) {
+    if (route.name !== 'Article') {
+      const { title, description, withSuffix = true } = route.meta
+      if (title) {
+        head.title(title, withSuffix)
+        head.ogTitle(title, withSuffix)
+      }
+      if (description) {
+        head.description(description)
+        head.ogDescription(description)
+      }
+    }
+    head.ogUrl(`https://deviltea.me${route.fullPath}`)
+  }
+
+  @Watch('$route')
+  private onRouteChange (to: Route) {
+    this.detectHeadMeta(to)
+    this.detectRouteScroll(to)
+  }
+
+  private mounted () {
     this.startToDetectDeviceType()
   }
 
-  public beforeDestroy () {
+  private beforeDestroy () {
     window.removeEventListener('resize', this.detectDeviceType)
   }
 }
