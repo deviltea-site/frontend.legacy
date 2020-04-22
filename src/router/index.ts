@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '@/pages/Home.vue'
-import About from '@/pages/About.vue'
-import ArticleList from '@/pages/ArticleList.vue'
-import Article from '@/pages/Article.vue'
-import NotFound from '@/pages/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -12,7 +7,7 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('@/pages/Home.vue'),
     meta: {
       title: 'DevilTea',
       withSuffix: false
@@ -21,7 +16,7 @@ const routes: RouteConfig[] = [
   {
     path: '/about',
     name: 'About',
-    component: About,
+    component: () => import('@/pages/About.vue'),
     meta: {
       title: '關於我',
       description: '關於 DevilTea 的一些資訊 ＯｗＯ'
@@ -30,7 +25,7 @@ const routes: RouteConfig[] = [
   {
     path: '/articles',
     name: 'ArticleList',
-    component: ArticleList,
+    component: () => import('@/pages/ArticleList.vue'),
     meta: {
       title: '文章列表',
       description: '文章們ㄉ列表'
@@ -39,12 +34,12 @@ const routes: RouteConfig[] = [
   {
     path: '/articles/:articleId',
     name: 'Article',
-    component: Article
+    component: () => import('@/pages/Article.vue')
   },
   {
     path: '/404',
     name: 'NotFound',
-    component: NotFound,
+    component: () => import('@/pages/NotFound.vue'),
     meta: {
       title: '404 Not Found',
       description: '找不到這個頁面 ＱＡＱ'
