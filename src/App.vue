@@ -10,6 +10,7 @@
       v-if="showScrollToTopButton"
       class="scroll-to-top-btn icon-circular-btn"
       v-scroll-to="'#top-anchor'"
+      aria-label="the button for scrolling to top"
     >
       <Icon name="arrow-collapse-up"></Icon>
     </button>
