@@ -11,18 +11,27 @@ li,
 span,
 div {
   line-height: 1;
-  font-family: Noto Sans TC, Din, Microsoft JhengHei, Avenir, Helvetica, Arial,
-    sans-serif;
+  font-family: Din, Microsoft JhengHei, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
+
+  .wf-active & {
+    font-family: Noto Sans TC, Din, Microsoft JhengHei, Avenir, Helvetica, Arial,
+      sans-serif;
+  }
 }
 
 code,
 code > * {
-  font-family: JetBrains Mono, Noto Sans TC, Din, Microsoft JhengHei, Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace, Noto Sans TC, Din, Microsoft JhengHei, Avenir,
+    Helvetica, Arial, sans-serif;
   line-height: 1.5;
-}
 
+  .wf-active & {
+    font-family: JetBrains Mono, Noto Sans TC, Din, Microsoft JhengHei, Avenir,
+      Helvetica, Arial, sans-serif;
+  }
+}
 
 .font {
   &-bold {

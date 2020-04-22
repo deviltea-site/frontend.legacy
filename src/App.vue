@@ -97,6 +97,14 @@ export default class App extends Vue {
     this.detectRouteScroll(to)
   }
 
+  @Watch('$route.name')
+  private async onPageChange () {
+    document.documentElement.classList.remove('wf-active')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (document as any).fonts.ready
+    document.documentElement.classList.add('wf-active')
+  }
+
   private mounted () {
     this.startToDetectDeviceType()
   }
