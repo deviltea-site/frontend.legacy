@@ -45,13 +45,17 @@ export default class Article extends Vue {
   }
 
   private updateHead () {
+    head.reset()
     if (this.meta === null) return
     const { title, description } = this.meta
     if (title) {
       head.title(title)
       head.ogTitle(title)
     }
-    if (description) head.ogDescription(description)
+    if (description) {
+      head.description(description)
+      head.ogDescription(description)
+    }
   }
 
   public async mounted () {

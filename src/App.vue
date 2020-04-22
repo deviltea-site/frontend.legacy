@@ -76,6 +76,7 @@ export default class App extends Vue {
 
   private detectHeadMeta (route: Route) {
     if (route.name !== 'Article') {
+      head.reset()
       const { title, description, withSuffix = true } = route.meta
       if (title) {
         head.title(title, withSuffix)
