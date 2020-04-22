@@ -1,10 +1,6 @@
 <template>
   <section id="profile" class="about-block">
-    <img
-      class="avatar"
-      :src="profileData.avatarUrl"
-      alt="my handsome avatar"
-    />
+    <img class="avatar" :src="profileData.avatarUrl" alt="my handsome avatar" />
     <div class="info">
       <h2 class="underlined">{{ profileData.realname }}</h2>
       <div
@@ -17,6 +13,7 @@
             class="icon-circular-btn"
             :href="contact.href"
             target="_blank"
+            rel="noopener noreferrer"
             :aria-label="contact.ariaLabel"
           >
             <Icon :name="contact.icon"></Icon>
