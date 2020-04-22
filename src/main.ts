@@ -1,10 +1,9 @@
 import Vue from 'vue'
+import VueScrollto from 'vue-scrollto'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@/assets/scss/main.scss'
-
-import VueScrollto from 'vue-scrollto'
 
 Vue.use(VueScrollto, {
   container: '#app',
