@@ -1,3 +1,5 @@
+import { getFullUrl } from './util'
+
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 const metasDOM = Array.from(document.querySelectorAll('head>.meta')) as HTMLElement[]
 
@@ -15,8 +17,8 @@ const headPayloads = {
 const defaultValue = {
   title: 'DevilTea',
   description: 'DevilTea 的個人網站',
-  url: 'https://deviltea.me/',
-  image: 'https://deviltea.me/images/og.png',
+  url: getFullUrl(),
+  image: getFullUrl('/images/og.png'),
   type: 'blog'
 }
 

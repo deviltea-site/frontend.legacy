@@ -24,6 +24,7 @@ import Footer from '@/components/shared/Footer.vue'
 import Icon from '@/components/basic/Icon.vue'
 import appModule, { DeviceType } from '@/store/modules/app'
 import head from './utils/head'
+import { getFullUrl } from './utils/util'
 
 @Component({
   components: {
@@ -87,7 +88,7 @@ export default class App extends Vue {
         head.ogDescription(description)
       }
     }
-    head.ogUrl(`https://deviltea.me${route.fullPath}`)
+    head.ogUrl(getFullUrl(route.fullPath))
   }
 
   @Watch('$route')
