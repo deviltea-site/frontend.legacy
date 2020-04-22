@@ -8,8 +8,10 @@ import pluginEmoji from 'markdown-it-emoji'
 import pluginContainer from 'markdown-it-container'
 import pluginIns from 'markdown-it-ins'
 import pluginMark from 'markdown-it-mark'
+import pluginExternalLinks from 'markdown-it-external-links'
 import Prism from 'prismjs'
 import { highlightLanguages } from '@/../config.json'
+import { getFullUrl } from '@/utils/util'
 
 const markdown = new MarkdownIt({
   html: true,
@@ -40,6 +42,11 @@ const markdown = new MarkdownIt({
   .use(pluginContainer, 'success')
   .use(pluginIns)
   .use(pluginMark)
+  .use(pluginExternalLinks, {
+    internalDomains: [getFullUrl().split('/')[2]],
+    externalTarget: '_blank',
+    externalRel: 'noopener noreferrer'
+  })
 
 function renderMarkdown (markdownContent: string) {
   return markdown.render(markdownContent)
