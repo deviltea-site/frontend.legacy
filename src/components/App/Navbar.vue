@@ -16,7 +16,7 @@
       </DButton>
     </div>
     <div class="menu-toggle navbar__item">
-      <DButton class="navbar__btn" circular @click="isToggled = !isToggled">
+      <DButton class="navbar__btn" circular @click="isToggled = !isToggled" aria-label="the toggle button of navbar">
         <DIcon :name="menuIcon"></DIcon>
       </DButton>
     </div>
