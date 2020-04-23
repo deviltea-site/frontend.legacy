@@ -1,0 +1,21 @@
+$mobile-max-width: 600px;
+$tablet-max-width: 1280px;
+
+$view-padding: var(--view-view-padding);
+$content-max-width: var(--content-max-width);
+$navbar-height: var(--navbar-height);
+$footer-height: var(--footer-height);
+
+:root {
+  --mobile-max-width: #{$mobile-max-width};
+  --tablet-max-width: #{$tablet-max-width};
+  --view-view-padding: 2rem;
+  --content-max-width: 700px;
+  --navbar-height: 76px;
+  --footer-height: 48px;
+
+  @media screen and (max-width: $mobile-max-width) {
+    --navbar-height: 56px;
+    --view-view-padding: 1rem;
+  }
+}

@@ -1,3 +1,8 @@
+@import "../shared/shared";
+
+@import "../components/article/meta-header";
+@import "../components/article/markdown-section";
+
 #article {
   &.loading {
     display:flex;
@@ -5,5 +10,26 @@
     align-items: center;
     width: 100%;
     height: 100%;
+  }
+
+  .article-body {
+    .divider {
+      border: none;
+      text-align: center;
+      line-height: 0;
+      height: 1px;
+      padding: 1rem 0;
+  
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 1px;
+        background-color: $grey-lighten-3;
+      }
+    }
+
+    @include meta-header;
+    @include markdown-section;
   }
 }

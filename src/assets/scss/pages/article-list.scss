@@ -1,3 +1,7 @@
+@import "../shared/shared";
+
+@import "../components/article-list/article-list-item";
+
 #article-list {
   &.loading {
     display:flex;
@@ -13,4 +17,6 @@
     height: 1px;
     background-color: rgba($grey-darken-4, 0.2);
   }
+
+  @include article-list-item;
 }

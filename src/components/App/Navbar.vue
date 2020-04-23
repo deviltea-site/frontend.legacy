@@ -6,25 +6,27 @@
       class="navbar__item"
       :class="{ hidden: !isToggled }"
     >
-      <router-link
-        class="icon-circular-btn"
+      <DButton
+        class="navbar__btn"
         :class="{ active: item.name === currentRouteName }"
         :to="{ name: item.name }"
+        circular
       >
-        <Icon :name="item.icon"></Icon>
-      </router-link>
+        <DIcon :name="item.icon"></DIcon>
+      </DButton>
     </div>
     <div class="menu-toggle navbar__item">
-      <a class="btn" @click="isToggled = !isToggled">
-        <Icon :name="menuIcon"></Icon>
-      </a>
+      <DButton class="navbar__btn" circular @click="isToggled = !isToggled">
+        <DIcon :name="menuIcon"></DIcon>
+      </DButton>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Icon from '@/components/basic/Icon.vue'
+import DIcon from '@/components/Basic/DIcon.vue'
+import DButton from '@/components/Basic/DButton.vue'
 
 interface NavbarItem {
   name: string;
@@ -34,7 +36,8 @@ interface NavbarItem {
 
 @Component({
   components: {
-    Icon
+    DIcon,
+    DButton
   }
 })
 export default class Navbar extends Vue {

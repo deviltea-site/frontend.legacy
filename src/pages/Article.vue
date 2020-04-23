@@ -7,23 +7,30 @@
     }"
   >
     <CircularProgress v-if="isLoading" color="#ccc"></CircularProgress>
-    <ArticleBody v-else :meta="meta" :content="content"></ArticleBody>
+    <article v-else class="article-body">
+      <MetaHeader :meta="meta"></MetaHeader>
+      <hr class="divider">
+      <MarkdownSection :content="content"></MarkdownSection>
+    </article>
   </main>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import CircularProgress from '@/components/basic/CircularProgress.vue'
-import ArticleBody from '@/components/Article/ArticleBody.vue'
+import CircularProgress from '@/components/Basic/CircularProgress.vue'
+import MetaHeader from '@/components/Article/MetaHeader.vue'
+import MarkdownSection from '@/components/Article/MarkdownSection.vue'
 import { getArticleMeta, getArticleContent } from '@/controllers/articles'
 import { ArticleMeta } from '@/interfaces/API'
 import head from '@/utils/head'
 import { delay } from '@/utils/util'
+import '@/assets/scss/pages/article.scss'
 
 @Component({
   components: {
     CircularProgress,
-    ArticleBody
+    MetaHeader,
+    MarkdownSection
   }
 })
 export default class Article extends Vue {

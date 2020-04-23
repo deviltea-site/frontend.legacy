@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import '@/assets/scss/pages/home.scss'
 
 @Component({
   name: 'Home'

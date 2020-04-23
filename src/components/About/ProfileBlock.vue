@@ -9,15 +9,16 @@
         class="contacts"
       >
         <div v-for="contact in row" :key="contact.name" class="contact">
-          <a
-            class="icon-circular-btn"
+          <DButton
+            class="contact__btn"
             :href="contact.href"
             target="_blank"
             rel="noopener noreferrer"
             :aria-label="contact.ariaLabel"
+            circular
           >
-            <Icon :name="contact.icon"></Icon>
-          </a>
+            <DIcon :name="contact.icon"></DIcon>
+          </DButton>
         </div>
       </div>
     </div>
@@ -27,11 +28,13 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { ProfileData } from '@/interfaces/AboutData'
-import Icon from '@/components/basic/Icon.vue'
+import DButton from '@/components/Basic/DButton.vue'
+import DIcon from '@/components/Basic/DIcon.vue'
 
 @Component({
   components: {
-    Icon
+    DIcon,
+    DButton
   }
 })
 export default class ProfileBlock extends Vue {

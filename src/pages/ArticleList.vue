@@ -22,11 +22,12 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
 import ArticleListItem from '@/components/ArticleList/ArticleListItem.vue'
-import CircularProgress from '@/components/basic/CircularProgress.vue'
+import CircularProgress from '@/components/Basic/CircularProgress.vue'
 import { getArticleList, getArticleMeta } from '@/controllers/articles'
 import { ArticleMeta } from '../interfaces/API'
 import { delay } from '@/utils/util'
 import { Route } from 'vue-router'
+import '@/assets/scss/pages/article-list.scss'
 
 const COUNT_OF_ARTICLES_PER_PAGE = 10
 

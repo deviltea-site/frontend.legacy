@@ -1,5 +1,8 @@
 <template>
-  <span class="icon">
+  <span class="d-icon" :style="{
+    '--icon-size': size,
+    '--icon-color': color
+  }">
     <svg
       fill="currentColor"
       viewBox="0 0 24 24"
@@ -17,9 +20,10 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import icons from '@/utils/icon'
 
 @Component({})
-export default class Icon extends Vue {
-  @Prop()
-  private name!: string
+export default class DIcon extends Vue {
+  @Prop() private name!: string
+  @Prop() private size!: string
+  @Prop() private color!: string
 
   private get mdiName () {
     return 'mdi' + this.name.trim().split('-').map(word => word[0].toUpperCase() + word.slice(1)).join('')
@@ -30,11 +34,3 @@ export default class Icon extends Vue {
   }
 }
 </script>
-
-<style lang="scss">
-.icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-}
-</style>

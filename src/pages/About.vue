@@ -26,6 +26,7 @@ import SkillBlock from '@/components/About/SkillBlock.vue'
 // import ProjectBlock from '@/components/About/ProjectBlock.vue'
 import AboutData from '@/interfaces/AboutData'
 import aboutData from '@/assets/json/about.json'
+import '@/assets/scss/pages/about.scss'
 
 @Component({
   components: {

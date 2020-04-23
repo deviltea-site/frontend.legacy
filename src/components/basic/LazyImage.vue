@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import CircularProgress from '@/components/basic/CircularProgress.vue'
+import CircularProgress from '@/components/Basic/CircularProgress.vue'
 import { delay } from '@/utils/util'
 
 @Component({

@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import '@/assets/scss/pages/not-found.scss'
 
 @Component({})
 export default class NotFound extends Vue {

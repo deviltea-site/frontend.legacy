@@ -6,7 +6,7 @@
     <div class="thumb">
       <LazyImage v-if="articleMeta.thumb" :src="articleMeta.thumb" />
       <div v-else class="icon-container">
-        <Icon name="book-open-variant"></Icon>
+        <DIcon name="book-open-variant"></DIcon>
       </div>
     </div>
     <div class="info">
@@ -43,13 +43,13 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import Icon from '@/components/basic/Icon.vue'
-import LazyImage from '@/components/basic/LazyImage.vue'
+import DIcon from '@/components/Basic/DIcon.vue'
+import LazyImage from '@/components/Basic/LazyImage.vue'
 import { ArticleMeta } from '@/interfaces/API'
 
 @Component({
   components: {
-    Icon,
+    DIcon,
     LazyImage
   }
 })

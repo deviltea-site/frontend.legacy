@@ -6,32 +6,36 @@
       <router-view class="fade-in animated" @render="onPageRender" />
     </keep-alive>
     <Footer></Footer>
-    <button
+    <DButton
       v-if="showScrollToTopButton"
-      class="scroll-to-top-btn icon-circular-btn"
+      class="scroll-to-top-btn"
       v-scroll-to="'#top-anchor'"
       aria-label="the button for scrolling to top"
+      circular
     >
-      <Icon name="arrow-collapse-up"></Icon>
-    </button>
+      <DIcon name="arrow-collapse-up"></DIcon>
+    </DButton>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
-import Navbar from '@/components/shared/Navbar.vue'
-import Footer from '@/components/shared/Footer.vue'
-import Icon from '@/components/basic/Icon.vue'
+import Navbar from '@/components/App/Navbar.vue'
+import Footer from '@/components/App/Footer.vue'
+import DIcon from '@/components/Basic/DIcon.vue'
+import DButton from '@/components/Basic/DButton.vue'
 import appModule, { DeviceType } from '@/store/modules/app'
 import head from './utils/head'
 import { getFullUrl } from './utils/util'
+import '@/assets/scss/app.scss'
 
 @Component({
   components: {
     Navbar,
     Footer,
-    Icon
+    DIcon,
+    DButton
   }
 })
 export default class App extends Vue {
