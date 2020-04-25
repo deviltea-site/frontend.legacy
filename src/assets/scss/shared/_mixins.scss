@@ -9,3 +9,21 @@
     @content;
   }
 }
+
+@mixin onlyTablet() {
+  @media screen and (min-width: $mobile-max-width - 1px) and (max-width: $tablet-max-width) {
+    @content;
+  }
+}
+
+@mixin onlyDesktop() {
+  @media screen and (min-width: $tablet-max-width - 1px) {
+    @content;
+  }
+}
+
+@mixin tabletAndUp {
+  @media screen and (min-width: $mobile-max-width - 1px) {
+    @content;
+  }
+}
