@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { renderMarkdown } from '@/utils/markdown'
+import { renderMarkedMarkdown as renderMarkdown } from '@/utils/markdown'
 
 @Component({})
 export default class ArticleBody extends Vue {

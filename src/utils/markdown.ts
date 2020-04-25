@@ -10,6 +10,8 @@ import pluginIns from 'markdown-it-ins'
 import pluginMark from 'markdown-it-mark'
 import pluginExternalLinks from 'markdown-it-external-links'
 import pluginMarkAllMarkdownContents from './markdown-it-plugins/markAllMarkdownContents'
+import pluginAnchor from 'markdown-it-anchor'
+import pluginTOC from 'markdown-it-toc-done-right'
 import Prism from 'prismjs'
 import { highlightLanguages } from '@/../config.json'
 import { getFullUrl } from '@/utils/util'
@@ -47,6 +49,16 @@ function createMarkdownIt () {
       internalDomains: [getFullUrl().split('/')[2]],
       externalTarget: '_blank',
       externalRel: 'noopener noreferrer'
+    })
+    .use(pluginAnchor, {
+      level: [1, 2, 3],
+      permalink: true,
+      permalinkBefore: true
+    })
+    .use(pluginTOC, {
+      containerClass: 'toc',
+      level: [1, 2, 3],
+      listType: 'ul'
     })
 }
 

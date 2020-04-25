@@ -9,7 +9,22 @@
 
     @for $i from 1 to 6 {
       h#{$i} {
+        position: relative;
         font-size: #{(2 - $i * 0.25)}rem;
+
+        .header-anchor {
+          position: absolute;
+          display: none;
+          left: -1.25rem;
+          width: 100%;
+        }
+
+        @include tabletAndUp {
+          .header-anchor:hover,
+          &:hover .header-anchor {
+            display: inline-block;
+          }
+        }
       }
     }
 
