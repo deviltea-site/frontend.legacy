@@ -6,7 +6,7 @@ function plugin (md: MarkdownIt) {
     state.tokens.map((token) => {
       if (token.level === 0 && token.map && token.map.length > 0) {
         const [start, end] = token.map
-        const content = lines.filter((line, index) => index >= start && index < end).join('\n')
+        const content = lines.slice(start, end).join('\n')
         token.attrSet('data-md-content', content)
       }
     })
