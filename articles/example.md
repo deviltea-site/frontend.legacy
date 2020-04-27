@@ -1,3 +1,14 @@
+```json-meta
+{
+  "id": "example",
+  "title": "Markdown Demo",
+  "description": "An article to demo all markdown features.",
+  "category": "Demo",
+  "tags": [],
+  "createdTime": "2020-04-21T18:50:15.795Z",
+  "updatedTime": null
+}
+```
 ---
 __Advertisement :)__
 

@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { ArticleMeta } from '@/interfaces/API'
+import { ArticleMeta } from '@/interfaces/Article'
 
   @Component({})
 export default class MetaHeader extends Vue {

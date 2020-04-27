@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { icons } = require('../config.json')
-const fs = require('fs')
-const path = require('path')
+import { icons } from '../config.json'
+import fs from 'fs'
+import path from 'path'
 const iconImportionPath = path.join(__dirname, '..', 'src', 'utils', 'icon.ts')
 const iconsString = icons.join(',\n  ')
 const importion =
@@ -17,3 +16,4 @@ export default {
 
 fs.promises.writeFile(iconImportionPath, importion)
   .then(() => console.log('Icons importion generated!'))
+// console.log(icons)

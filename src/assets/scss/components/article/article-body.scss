@@ -1,5 +1,5 @@
-@mixin markdown-section {
-  .markdown-section {
+@mixin article-body {
+  .article-body {
     position: relative;
 
     & > *:not(:last-child) {

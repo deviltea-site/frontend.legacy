@@ -1,7 +1,7 @@
 @import "../shared/shared";
 
 @import "../components/article/meta-header";
-@import "../components/article/markdown-section";
+@import "../components/article/article-body";
 
 #article {
   &.loading {
@@ -30,6 +30,6 @@
     }
 
     @include meta-header;
-    @include markdown-section;
+    @include article-body;
   }
 }

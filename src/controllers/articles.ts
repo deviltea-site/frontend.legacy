@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ArticleList, ArticleMeta } from '@/interfaces/API'
+import { ArticleList, ArticleMeta } from '@/interfaces/Article'
 
 const publicPath = process.env.BASE_URL
 
@@ -14,6 +14,6 @@ export async function getArticleMeta (id: string) {
 }
 
 export async function getArticleContent (id: string) {
-  const { data } = await axios.get(`${publicPath}api/articles/${id}/content.md`)
+  const { data } = await axios.get(`${publicPath}api/articles/${id}/content.html`)
   return data as string
 }

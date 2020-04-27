@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "npm run pre-build && vue-cli-service serve",
     "build": "npm run pre-build && vue-cli-service build",
     "build:analyze": "npm run build -- --analyze",
-    "pre-build": "npm run generate-api && npm run generate-icons-import",
-    "generate-api": "node scripts/generateFakeAPI.js",
-    "generate-icons-import": "node scripts/generateIconsImportion.js",
+    "pre-build": "npm run generate:article-api && npm run generate:icons-import",
+    "generate:article-api": "ts-node -r tsconfig-paths/register --project ./scripts/tsconfig.json ./scripts/generateArticleAPI.ts",
+    "generate:icons-import": "ts-node -r tsconfig-paths/register --project ./scripts/tsconfig.json ./scripts/generateIconsImportion.ts",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/js": "^4.9.95",
     "@types/prismjs": "^1.16.0",
     "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.6.4",
     "jszip": "^3.4.0",
     "lodash-es": "^4.17.15",
@@ -42,8 +43,10 @@
     "vuex-module-decorators": "^0.16.1"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.18",
     "@types/lodash-es": "^4.17.3",
     "@types/markdown-it": "0.0.9",
+    "@types/node": "^13.13.2",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "@vue/cli-plugin-babel": "~4.2.0",
@@ -65,6 +68,8 @@
     "node-sass": "^4.12.0",
     "prerender-spa-plugin": "^3.4.0",
     "sass-loader": "^8.0.2",
+    "ts-node": "^8.9.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "~3.7.5",
     "vue-cli-plugin-prerender-spa": "~1.1.6",
     "vue-template-compiler": "^2.6.11",

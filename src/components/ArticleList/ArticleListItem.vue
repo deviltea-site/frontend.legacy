@@ -45,7 +45,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import DIcon from '@/components/Basic/DIcon.vue'
 import LazyImage from '@/components/Basic/LazyImage.vue'
-import { ArticleMeta } from '@/interfaces/API'
+import { ArticleMeta } from '@/interfaces/Article'
 
 @Component({
   components: {

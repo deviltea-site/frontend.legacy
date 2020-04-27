@@ -1,3 +1,10 @@
+export type Data = ArticleMeta | ArticleList | Category | CategoryList | Tag | TagList
+
+export interface Article {
+  meta: ArticleMeta;
+  content: string;
+}
+
 export interface ArticleMeta {
   id: string;
   title: string;

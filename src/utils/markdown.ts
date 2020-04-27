@@ -10,13 +10,14 @@ import pluginIns from 'markdown-it-ins'
 import pluginMark from 'markdown-it-mark'
 import pluginExternalLinks from 'markdown-it-external-links'
 import pluginMarkAllMarkdownContents from './markdown-it-plugins/markAllMarkdownContents'
+import pluginJsonMeta from './markdown-it-plugins/jsonMeta'
 import pluginAnchor from 'markdown-it-anchor'
 import pluginTOC from 'markdown-it-toc-done-right'
 import Prism from 'prismjs'
-import { highlightLanguages } from '@/../config.json'
-import { getFullUrl } from '@/utils/util'
+import { highlightLanguages } from '../../config.json'
+import { getFullUrl } from './util'
 
-function createMarkdownIt () {
+function createMarkdownIt (needMarkSrc: boolean) {
   return new MarkdownIt({
     html: true,
     xhtmlOut: false,
@@ -27,10 +28,10 @@ function createMarkdownIt () {
     highlight (text, lang) {
       if (lang && highlightLanguages.find((hlang) => hlang.name === lang || hlang.alias === lang)) {
         try {
-          return `<pre class="code-block" data-lang="${lang}"><code>${Prism.highlight(text, Prism.languages[lang], lang)}</code></pre>`
+          return `<pre class="code-block" data-lang="${lang}"${needMarkSrc ? ` data-md-content="\`\`\`${lang}\n${text.replace(/"/g, '&quot')}\n\`\`\`"` : ''}><code>${Prism.highlight(text, Prism.languages[lang], lang)}</code></pre>`
         } catch (__) {}
       }
-      return `<pre class="code-block"><code>${MarkdownIt().utils.escapeHtml(text)}</code></pre>`
+      return `<pre class="code-block"${needMarkSrc ? ` data-md-content="\`\`\`${lang}\n${text.replace(/"/g, '&quot')}\n\`\`\`"` : ''}><code>${MarkdownIt().utils.escapeHtml(text)}</code></pre>`
     }
   })
     .use(pluginSub)
@@ -60,22 +61,20 @@ function createMarkdownIt () {
       level: [1, 2, 3],
       listType: 'ul'
     })
+    .use(pluginJsonMeta)
+    .use(needMarkSrc ? pluginMarkAllMarkdownContents : () => null)
 }
 
-function createRenderMarkdownFunction () {
-  const md = createMarkdownIt()
+function createRenderMarkdownFunction (needMarkSrc: boolean) {
+  const md = createMarkdownIt(needMarkSrc)
   return (markdownContent: string) => {
     return md.render(markdownContent)
   }
 }
 
-function createRenderMarkedMarkdownFunction () {
-  const md = createMarkdownIt()
-    .use(pluginMarkAllMarkdownContents)
-  return (markdownContent: string) => {
-    return md.render(markdownContent)
-  }
-}
+export const renderMarkdown = createRenderMarkdownFunction(false)
+export const renderMarkedMarkdown = createRenderMarkdownFunction(true)
 
-export const renderMarkdown = createRenderMarkdownFunction()
-export const renderMarkedMarkdown = createRenderMarkedMarkdownFunction()
+export function getElementMarkdownContent (element: HTMLElement) {
+  return (element.getAttribute('data-md-content') || '').replace(/&quot/g, '"')
+}
