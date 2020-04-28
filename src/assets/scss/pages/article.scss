@@ -1,11 +1,11 @@
 @import "../shared/shared";
 
 @import "../components/article/meta-header";
-@import "../components/article/article-body";
+@import "../components/article/content-section";
 
 #article {
   &.loading {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -13,23 +13,12 @@
   }
 
   .article-body {
-    .divider {
-      border: none;
-      text-align: center;
-      line-height: 0;
-      height: 1px;
-      padding: 1rem 0;
-  
-      &::after {
-        content: "";
-        display: inline-block;
-        width: 100%;
-        height: 1px;
-        background-color: $grey-lighten-3;
-      }
+    .meta-header {
+      @include meta-header;
     }
 
-    @include meta-header;
-    @include article-body;
+    .content-section {
+      @include content-section;
+    }
   }
 }

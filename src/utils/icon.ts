@@ -11,7 +11,11 @@ import {
   mdiMenuLeft,
   mdiMenuRight,
   mdiBookOpenVariant,
-  mdiArrowCollapseUp
+  mdiArrowCollapseUp,
+  mdiEye,
+  mdiPencil,
+  mdiDownload,
+  mdiBookOpen
 } from '@mdi/js'
 
 export default {
@@ -26,5 +30,9 @@ export default {
   mdiMenuLeft,
   mdiMenuRight,
   mdiBookOpenVariant,
-  mdiArrowCollapseUp
+  mdiArrowCollapseUp,
+  mdiEye,
+  mdiPencil,
+  mdiDownload,
+  mdiBookOpen
 }

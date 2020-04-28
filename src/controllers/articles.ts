@@ -17,3 +17,8 @@ export async function getArticleContent (id: string) {
   const { data } = await axios.get(`${publicPath}api/articles/${id}/content.html`)
   return data as string
 }
+
+export async function getArticleSource (id: string) {
+  const { data } = await axios.get(`${publicPath}api/articles/${id}/source.md`)
+  return data as string
+}

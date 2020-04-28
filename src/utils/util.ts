@@ -16,3 +16,13 @@ export function getFullUrl (relativeUrl = ''): string {
   }
   return `${window.location.protocol}//${join(`${window.location.host}${process.env.BASE_URL}`, relativeUrl).toString()}`
 }
+
+export function saveFile (filename: string, content: string, type = 'text/plain;charset=utf-8') {
+  const element = document.createElement('a')
+  element.setAttribute('href', `data:${type},${encodeURIComponent(content)}`)
+  element.setAttribute('download', filename)
+  element.style.display = 'none'
+  document.body.appendChild(element)
+  element.click()
+  document.body.removeChild(element)
+}

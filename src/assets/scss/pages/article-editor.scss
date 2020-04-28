@@ -1,0 +1,224 @@
+@import "../shared/shared";
+
+@import "../components/article/meta-header";
+@import "../components/article/content-section";
+
+#article-editor {
+  &.view-container {
+    padding-bottom: 0;
+    width: 100%;
+
+    &.loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mode-switch {
+      &-container {
+        display: flex;
+        align-items: center;
+        height: $navbar-height;
+        padding: 0 2rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 99998;
+
+        @include mobile {
+          padding: 0 1rem;
+        }
+      }
+
+      &__btn {
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        margin-left: 1rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        opacity: 0.3;
+        transition: all 0.3s;
+
+        &:hover,
+        &.active {
+          opacity: 0.8;
+        }
+
+        .d-icon {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @include mobile {
+          width: 42px;
+          height: 42px;
+
+          .d-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .download-btn {
+      position: fixed;
+      right: 2rem;
+      bottom: 1rem;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 50%;
+      outline: none;
+      opacity: 0.3;
+      transition: all 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      .d-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      @include mobile {
+        width: 42px;
+        height: 42px;
+        right: 1rem;
+
+        .d-icon {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+
+    .editor-container,
+    .preview-container {
+      display: inline-block;
+      width: 100%;
+      vertical-align: top;
+    }
+
+    .splitter {
+      display: none;
+    }
+
+    &.read,
+    &.write {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    &.read {
+      .editor-container {
+        display: none;
+      }
+
+      .preview-container {
+        max-width: $content-max-width;
+      }
+    }
+
+    &.write {
+      .preview-container {
+        display: none;
+      }
+
+      .editor-container {
+        max-width: $content-max-width;
+      }
+    }
+
+    &.both {
+      $splitter-size: 0.75rem;
+      overflow-y: hidden;
+      height: calc(100% - #{$footer-height});
+      max-height: calc(100% - #{$footer-height});
+
+      .splitter {
+        display: inline-block;
+        width: $splitter-size;
+        height: 100%;
+
+        @include mobile {
+          width: 100%;
+          height: $splitter-size;
+        }
+      }
+
+      .preview-container {
+        padding-left: 2rem;
+      }
+
+      .editor-container,
+      .preview-container {
+        width: calc(50% - #{$splitter-size});
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+
+        @include no-scrollbar;
+
+        @include mobile {
+          width: 100%;
+          height: calc(50% - #{$splitter-size});
+        }
+      }
+    }
+
+    .editor-container {
+      .vue-codemirror {
+        height: 100%;
+
+        * {
+          font-family: "JetBrains Mono", monospace;
+        }
+
+        .CodeMirror {
+          height: 100%;
+
+          * {
+            line-height: 1.25;
+          }
+        }
+      }
+    }
+
+    .preview-container {
+      .article-body {
+        .error-list {
+          width: 100%;
+          padding: 1rem;
+          border: solid 1px #ab1515;
+          border-radius: 10px;
+          background-color: #ffe6e6;
+          color: #ab1515;
+
+          li {
+            margin: 0.5rem 0;
+          }
+        }
+
+        .meta-header {
+          @include meta-header;
+        }
+
+        .content-section {
+          @include content-section;
+        }
+      }
+    }
+  }
+}

@@ -9,8 +9,7 @@
     <CircularProgress v-if="isLoading" color="#ccc"></CircularProgress>
     <article v-else class="article-body">
       <MetaHeader :meta="meta"></MetaHeader>
-      <hr class="divider">
-      <ArticleBody :content="content"></ArticleBody>
+      <ContentSection :content="content"></ContentSection>
     </article>
   </main>
 </template>
@@ -19,7 +18,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import CircularProgress from '@/components/Basic/CircularProgress.vue'
 import MetaHeader from '@/components/Article/MetaHeader.vue'
-import ArticleBody from '@/components/Article/ArticleBody.vue'
+import ContentSection from '@/components/Article/ContentSection.vue'
 import { getArticleMeta, getArticleContent } from '@/controllers/articles'
 import { ArticleMeta } from '@/interfaces/Article'
 import head from '@/utils/head'
@@ -30,7 +29,7 @@ import '@/assets/scss/pages/article.scss'
   components: {
     CircularProgress,
     MetaHeader,
-    ArticleBody
+    ContentSection
   }
 })
 export default class Article extends Vue {

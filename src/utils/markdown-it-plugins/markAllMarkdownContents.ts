@@ -11,6 +11,12 @@ function plugin (md: MarkdownIt) {
       }
     })
   })
+
+  const oldTocOpen = md.renderer.rules.tocOpen
+  md.renderer.rules.tocOpen = function (tokens, idx, options, env, slf) {
+    const tempResult = oldTocOpen(tokens, idx, options, env, slf)
+    return `${tempResult.substr(0, tempResult.length - 1)}${slf.renderAttrs(tokens[idx])}>`
+  }
 }
 
 export default plugin

@@ -20,14 +20,8 @@ div {
 
 code,
 code > * {
-  font-family: monospace, Noto Sans TC, Din, Microsoft JhengHei, Avenir,
-    Helvetica, Arial, sans-serif;
+  font-family: "JetBrains Mono", monospace;
   line-height: 1.5;
-
-  .wf-active & {
-    font-family: JetBrains Mono, Noto Sans TC, Din, Microsoft JhengHei, Avenir,
-      Helvetica, Arial, sans-serif;
-  }
 }
 
 .font {

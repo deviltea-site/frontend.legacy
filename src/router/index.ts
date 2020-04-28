@@ -32,9 +32,19 @@ const routes: RouteConfig[] = [
     }
   },
   {
+    path: '/articles/new',
+    name: 'NewArticle',
+    component: () => import('@/pages/ArticleEditor.vue')
+  },
+  {
     path: '/articles/:articleId',
     name: 'Article',
     component: () => import('@/pages/Article.vue')
+  },
+  {
+    path: '/articles/:articleId/edit',
+    name: 'EditArticle',
+    component: () => import('@/pages/ArticleEditor.vue')
   },
   {
     path: '/404',

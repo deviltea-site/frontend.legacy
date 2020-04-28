@@ -27,6 +27,7 @@
       </div>
     </div>
     <div class="meta-header__description">{{ meta.description }}</div>
+    <hr class="divider" />
   </header>
 </template>
 

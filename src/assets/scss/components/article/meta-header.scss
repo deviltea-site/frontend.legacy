@@ -1,87 +1,101 @@
 @mixin meta-header {
-  .meta-header {
-    & > div:not(:last-child) {
-      margin-bottom: 0.75rem;
-    }
+  .divider {
+    border: none;
+    text-align: center;
+    line-height: 0;
+    height: 1px;
+    padding: 1rem 0;
 
-    &__title {
-      color: $primary;
-      font-size: 2.5rem;
-      margin-bottom: 4px !important;
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 1px;
+      background-color: $grey-lighten-3;
     }
+  }
 
-    &__date span {
+  & > div {
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    color: $primary;
+    font-size: 2.5rem;
+    margin-bottom: 4px !important;
+  }
+
+  &__date span {
+    color: $grey;
+    font-size: 12px;
+    font-weight: 100;
+    margin-right: 8px;
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 24px;
+    color: $grey;
+  }
+
+  .category-tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    .label {
       color: $grey;
       font-size: 12px;
       font-weight: 100;
-      margin-right: 8px;
     }
 
-    &__description {
-      font-size: 16px;
-      line-height: 24px;
-      color: $grey;
-    }
+    .category {
+      margin-right: 1rem;
+      margin-bottom: 12px;
 
-    .category-tags-wrapper {
-      display: flex;
-      flex-wrap: wrap;
+      &__link {
+        display: inline-block;
+        color: $primary;
+        text-decoration: none;
+        margin-left: 8px;
+        transition: all 0.3s;
 
-      .label {
-        color: $grey;
-        font-size: 12px;
-        font-weight: 100;
-      }
+        &:hover {
+          color: $primary-lighten-1;
+          transform: scale(1.05);
+          transition: all 0.1s;
+        }
 
-      .category {
-        margin-right: 1rem;
-        margin-bottom: 12px;
-
-        &__link {
-          display: inline-block;
-          color: $primary;
-          text-decoration: none;
-          margin-left: 8px;
-          transition: all 0.3s;
-
-          &:hover {
-            color: $primary-lighten-1;
-            transform: scale(1.05);
-            transition: all 0.1s;
-          }
-
-          &:active {
-            color: $primary-darken-1;
-            transform: scale(0.95);
-            transition: all 0.1s;
-          }
+        &:active {
+          color: $primary-darken-1;
+          transform: scale(0.95);
+          transition: all 0.1s;
         }
       }
+    }
 
-      .tags {
-        &__tag {
-          color: $light;
-          text-decoration: none;
-          display: inline-block;
-          vertical-align: middle;
-          font-size: 12px;
-          padding: 4px;
-          border-radius: 5px;
-          background-color: $primary;
-          margin-left: 8px;
-          transition: all 0.3s;
+    .tags {
+      &__tag {
+        color: $light;
+        text-decoration: none;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 12px;
+        padding: 4px;
+        border-radius: 5px;
+        background-color: $primary;
+        margin-left: 8px;
+        transition: all 0.3s;
 
-          &:hover {
-            background-color: $primary-lighten-1;
-            transform: scale(1.05);
-            transition: all 0.1s;
-          }
+        &:hover {
+          background-color: $primary-lighten-1;
+          transform: scale(1.05);
+          transition: all 0.1s;
+        }
 
-          &:active {
-            background-color: $primary-darken-1;
-            transform: scale(0.95);
-            transition: all 0.1s;
-          }
+        &:active {
+          background-color: $primary-darken-1;
+          transform: scale(0.95);
+          transition: all 0.1s;
         }
       }
     }

@@ -4,10 +4,6 @@
   max-width: 100%;
   min-height: calc(100% - #{$footer-height});
   overflow-x: hidden;
-
-  @include mobile {
-    min-height: calc(100% - #{$footer-height});
-  }
 }
 
 .content-container {

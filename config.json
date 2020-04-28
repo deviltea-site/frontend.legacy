@@ -11,7 +11,11 @@
     "mdiMenuLeft",
     "mdiMenuRight",
     "mdiBookOpenVariant",
-    "mdiArrowCollapseUp"
+    "mdiArrowCollapseUp",
+    "mdiEye",
+    "mdiPencil",
+    "mdiDownload",
+    "mdiBookOpen"
   ],
   "highlightLanguages": [
     { "name": "javascript", "alias": "js" },
