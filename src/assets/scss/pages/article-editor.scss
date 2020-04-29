@@ -47,6 +47,10 @@
         &:hover,
         &.active {
           opacity: 0.8;
+
+          .d-button {
+            background-color: $primary;
+          }
         }
 
         .d-icon {
@@ -180,14 +184,13 @@
 
     .editor-container {
       .vue-codemirror {
-        height: 100%;
 
         * {
           font-family: "JetBrains Mono", monospace;
         }
 
         .CodeMirror {
-          height: 100%;
+          height: auto;
 
           * {
             line-height: 1.25;

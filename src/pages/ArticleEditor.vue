@@ -17,7 +17,7 @@
           class="mode-switch__btn"
           :class="{ active: data.name === currentMode }"
           circular
-          @click="currentMode = data.name"
+          @click="setMode(data.name)"
         >
           <DIcon :name="data.icon"></DIcon>
         </DButton>
@@ -165,12 +165,12 @@ export default class ArticleEditor extends Vue {
     const { meta } = this.renderedData
     const validators = [
       () => !!meta || 'Missing "meta" object.',
-      () => !!meta.id || 'Missing property: "id" of meta.',
-      () => !!meta.title || 'Missing property: "title" of meta.',
-      () => !!meta.description || 'Missing property: "description" of meta.',
-      () => !!meta.category || 'Missing property: "description" of meta.',
-      () => meta.tags instanceof Array || 'Property: "tags" of meta should be an array.',
-      () => new Date(meta.createdTime).toJSON() !== null || 'Property: "createdTime" of meta should be an Date string.'
+      () => !!meta?.id || 'Missing property: "id" of meta.',
+      () => !!meta?.title || 'Missing property: "title" of meta.',
+      () => !!meta?.description || 'Missing property: "description" of meta.',
+      () => !!meta?.category || 'Missing property: "description" of meta.',
+      () => meta?.tags instanceof Array || 'Property: "tags" of meta should be an array.',
+      () => new Date(meta?.createdTime).toJSON() !== null || 'Property: "createdTime" of meta should be an Date string.'
     ]
     return validators
       .map((validator) => validator())
@@ -244,6 +244,16 @@ export default class ArticleEditor extends Vue {
     if (this.isMetaValid) {
       saveFile(`${this.renderedData.meta.id}.md`, this.getFinalMarkdownContent(this.$route))
     }
+  }
+
+  private async setMode (mode: Mode) {
+    this.isLoading = true
+    const tempContent = this.markdownContent
+    this.markdownContent = ''
+    this.currentMode = mode
+    await delay(100)
+    this.markdownContent = tempContent
+    this.isLoading = false
   }
 
   // private startDragingSplitter () {
