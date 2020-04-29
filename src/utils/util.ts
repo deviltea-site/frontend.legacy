@@ -1,4 +1,5 @@
 import { join } from 'path-browserify'
+import { Route } from 'vue-router'
 
 export function isProduction () {
   return process.env.NODE_ENV === 'production'
@@ -25,4 +26,8 @@ export function saveFile (filename: string, content: string, type = 'text/plain;
   document.body.appendChild(element)
   element.click()
   document.body.removeChild(element)
+}
+
+export function isSameRoute (to: Route, from?: Route) {
+  return from && to.fullPath === from.fullPath
 }

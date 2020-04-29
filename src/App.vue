@@ -27,7 +27,7 @@ import DIcon from '@/components/Basic/DIcon.vue'
 import DButton from '@/components/Basic/DButton.vue'
 import appModule, { DeviceType } from '@/store/modules/app'
 import head from './utils/head'
-import { getFullUrl } from './utils/util'
+import { getFullUrl, isSameRoute } from './utils/util'
 import '@/assets/scss/app.scss'
 
 @Component({
@@ -48,12 +48,12 @@ export default class App extends Vue {
   private async onPageRender () {
     this.detectHeadMeta(this.$route)
     await this.$nextTick()
-    this.detectRouteScroll(this.$route)
     document.dispatchEvent(new Event('x-app-rendered'))
   }
 
-  private detectRouteScroll (route: Route) {
-    const hashValue = route.hash.substr(1)
+  private detectRouteScroll (to: Route, from?: Route) {
+    if (isSameRoute(to, from)) return
+    const hashValue = to.hash.substr(1)
     if (hashValue) {
       this.$scrollTo(`#${CSS.escape(hashValue)}`)
     } else {
@@ -80,10 +80,11 @@ export default class App extends Vue {
     window.addEventListener('resize', this.detectDeviceType)
   }
 
-  private detectHeadMeta (route: Route) {
-    if (route.name !== 'Article') {
+  private detectHeadMeta (to: Route, from?: Route) {
+    if (isSameRoute(to, from)) return
+    if (to.name !== 'Article') {
       head.reset()
-      const { title, description, withSuffix = true } = route.meta
+      const { title, description, withSuffix = true } = to.meta
       if (title) {
         head.title(title, withSuffix)
         head.ogTitle(title, withSuffix)
@@ -93,13 +94,14 @@ export default class App extends Vue {
         head.ogDescription(description)
       }
     }
-    head.ogUrl(getFullUrl(route.fullPath))
+    head.ogUrl(getFullUrl(to.fullPath))
   }
 
   @Watch('$route')
-  private onRouteChange (to: Route) {
-    this.detectHeadMeta(to)
-    this.detectRouteScroll(to)
+  private async onRouteChange (to: Route, from: Route) {
+    this.detectHeadMeta(to, from)
+    await this.$nextTick()
+    this.detectRouteScroll(to, from)
   }
 
   private mounted () {
