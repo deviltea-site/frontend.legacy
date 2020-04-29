@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $grey-lighten-3;
+  background-color: rgba($color: $grey-lighten-3, $alpha: 0.5);
   z-index: 99999;
 
   @include mobile {
