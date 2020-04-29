@@ -15,7 +15,8 @@
     "mdiEye",
     "mdiPencil",
     "mdiDownload",
-    "mdiBookOpen"
+    "mdiBookOpen",
+    "mdiPlus"
   ],
   "highlightLanguages": [
     { "name": "javascript", "alias": "js" },

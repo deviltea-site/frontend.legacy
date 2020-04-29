@@ -4,6 +4,8 @@
 @import "../components/article/content-section";
 
 #article {
+  position: relative;
+
   &.loading {
     display: flex;
     justify-content: center;
@@ -19,6 +21,32 @@
 
     .content-section {
       @include content-section;
+    }
+  }
+
+  .edit-article-btn {
+    position: absolute;
+    right: 2rem;
+    top: calc(#{$navbar-height} - 1rem);
+    opacity: 0.3;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .d-icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    @include mobile {
+      right: 1.5rem;
+
+      .d-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
     }
   }
 }

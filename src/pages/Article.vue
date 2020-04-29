@@ -11,6 +11,15 @@
       <MetaHeader :meta="meta"></MetaHeader>
       <ContentSection :content="content"></ContentSection>
     </article>
+    <DButton v-if="isDevelopment" class="edit-article-btn" :to="{
+      name: 'EditArticle',
+      params: {
+        articleId: $route.params.articleId
+      }
+    }">
+      <DIcon name="pencil"></DIcon>
+      <span>編輯文章</span>
+    </DButton>
   </main>
 </template>
 
@@ -19,23 +28,32 @@ import { Vue, Component } from 'vue-property-decorator'
 import CircularProgress from '@/components/Basic/CircularProgress.vue'
 import MetaHeader from '@/components/Article/MetaHeader.vue'
 import ContentSection from '@/components/Article/ContentSection.vue'
+import DButton from '@/components/Basic/DButton.vue'
+import DIcon from '@/components/Basic/DIcon.vue'
 import { getArticleMeta, getArticleContent } from '@/controllers/articles'
 import { ArticleMeta } from '@/interfaces/Article'
 import head from '@/utils/head'
 import { delay } from '@/utils/util'
 import '@/assets/scss/pages/article.scss'
+import appModule from '@/store/modules/app'
 
 @Component({
   components: {
     CircularProgress,
     MetaHeader,
-    ContentSection
+    ContentSection,
+    DIcon,
+    DButton
   }
 })
 export default class Article extends Vue {
   private content = ''
   private meta: ArticleMeta | null = null
   private isLoading = true
+
+  private get isDevelopment () {
+    return appModule.isDevelopment
+  }
 
   private async loadInitData () {
     try {

@@ -25,7 +25,7 @@ import Navbar from '@/components/App/Navbar.vue'
 import Footer from '@/components/App/Footer.vue'
 import DIcon from '@/components/Basic/DIcon.vue'
 import DButton from '@/components/Basic/DButton.vue'
-import appModule, { DeviceType } from '@/store/modules/app'
+import appModule, { DeviceType, EnvironmentType } from '@/store/modules/app'
 import head from './utils/head'
 import { getFullUrl, isSameRoute } from './utils/util'
 import '@/assets/scss/app.scss'
@@ -61,23 +61,23 @@ export default class App extends Vue {
     }
   }
 
-  private detectDeviceType () {
+  private detectDevice () {
     const windowWidth = window.innerWidth
     const root = document.documentElement
     const mobileMaxWidth = parseInt(getComputedStyle(root).getPropertyValue('--mobile-max-width').replace('px', ''))
     const tabletMaxWidth = parseInt(getComputedStyle(root).getPropertyValue('--tablet-max-width').replace('px', ''))
     if (windowWidth > tabletMaxWidth) {
-      appModule.setDeviceType(DeviceType.Desktop)
+      appModule.setDevice(DeviceType.Desktop)
     } else if (windowWidth > mobileMaxWidth) {
-      appModule.setDeviceType(DeviceType.Tablet)
+      appModule.setDevice(DeviceType.Tablet)
     } else {
-      appModule.setDeviceType(DeviceType.Mobile)
+      appModule.setDevice(DeviceType.Mobile)
     }
   }
 
-  private startToDetectDeviceType () {
-    this.detectDeviceType()
-    window.addEventListener('resize', this.detectDeviceType)
+  private startToDetectDevice () {
+    this.detectDevice()
+    window.addEventListener('resize', this.detectDevice)
   }
 
   private detectHeadMeta (to: Route, from?: Route) {
@@ -105,11 +105,12 @@ export default class App extends Vue {
   }
 
   private mounted () {
-    this.startToDetectDeviceType()
+    this.startToDetectDevice()
+    appModule.setEnvironment(process.env.NODE_ENV === 'development' ? EnvironmentType.Development : EnvironmentType.Production)
   }
 
   private beforeDestroy () {
-    window.removeEventListener('resize', this.detectDeviceType)
+    window.removeEventListener('resize', this.detectDevice)
   }
 }
 </script>

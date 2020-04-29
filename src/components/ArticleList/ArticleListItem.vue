@@ -5,6 +5,15 @@
       :to="{ name: 'Article', params: { articleId: articleMeta.id } }"
     >
       <div class="thumb">
+        <DButton
+          v-if="isDevelopment"
+          class="edit-article-btn"
+          :to="{ name: 'EditArticle', params: { articleId: articleMeta.id } }"
+          @click.stop
+        >
+          <DIcon name="pencil"></DIcon>
+          <span>編輯文章</span>
+        </DButton>
         <LazyImage v-if="articleMeta.thumb" :src="articleMeta.thumb" />
         <div v-else class="icon-container">
           <DIcon name="book-open-variant"></DIcon>
@@ -48,12 +57,15 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
+import DButton from '@/components/Basic/DButton.vue'
 import DIcon from '@/components/Basic/DIcon.vue'
 import LazyImage from '@/components/Basic/LazyImage.vue'
 import { ArticleMeta } from '@/interfaces/Article'
+import appModule from '@/store/modules/app'
 
 @Component({
   components: {
+    DButton,
     DIcon,
     LazyImage
   }
@@ -66,6 +78,10 @@ export default class ArticleListItem extends Vue {
       text: this.articleMeta.updatedTime ? '上次更新' : '發表時間',
       date: new Date(this.articleMeta.updatedTime || this.articleMeta.createdTime)
     }
+  }
+
+  private get isDevelopment () {
+    return appModule.isDevelopment
   }
 }
 </script>

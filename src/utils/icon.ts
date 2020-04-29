@@ -15,7 +15,8 @@ import {
   mdiEye,
   mdiPencil,
   mdiDownload,
-  mdiBookOpen
+  mdiBookOpen,
+  mdiPlus
 } from '@mdi/js'
 
 export default {
@@ -34,5 +35,6 @@ export default {
   mdiEye,
   mdiPencil,
   mdiDownload,
-  mdiBookOpen
+  mdiBookOpen,
+  mdiPlus
 }

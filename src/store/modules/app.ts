@@ -7,25 +7,44 @@ export enum DeviceType {
   Desktop
 }
 
+export enum EnvironmentType {
+  Development,
+  Production
+}
+
 @Module({ dynamic: true, store, name: 'app' })
 class AppModule extends VuexModule {
-  deviceType = DeviceType.Desktop
+  device = DeviceType.Desktop
+  environment = EnvironmentType.Production
 
   get isMobile () {
-    return this.deviceType === DeviceType.Mobile
+    return this.device === DeviceType.Mobile
   }
 
   get isTablet () {
-    return this.deviceType === DeviceType.Tablet
+    return this.device === DeviceType.Tablet
   }
 
   get isDesktop () {
-    return this.deviceType === DeviceType.Desktop
+    return this.device === DeviceType.Desktop
+  }
+
+  get isDevelopment () {
+    return this.environment === EnvironmentType.Development
+  }
+
+  get isProduction () {
+    return this.environment === EnvironmentType.Production
   }
 
   @Mutation
-  setDeviceType (deviceType: DeviceType) {
-    this.deviceType = deviceType
+  setDevice (device: DeviceType) {
+    this.device = device
+  }
+
+  @Mutation
+  setEnvironment (environment: EnvironmentType) {
+    this.environment = environment
   }
 }
 

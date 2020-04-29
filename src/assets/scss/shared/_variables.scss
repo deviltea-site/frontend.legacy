@@ -9,13 +9,13 @@ $footer-height: var(--footer-height);
 :root {
   --mobile-max-width: #{$mobile-max-width};
   --tablet-max-width: #{$tablet-max-width};
-  --view-view-padding: 2.5rem;
+  --view-view-padding: 2rem;
   --content-max-width: 700px;
   --navbar-height: 76px;
   --footer-height: 48px;
 
   @media screen and (max-width: $mobile-max-width) {
     --navbar-height: 56px;
-    --view-view-padding: 1.5rem;
+    --view-view-padding: 1rem;
   }
 }

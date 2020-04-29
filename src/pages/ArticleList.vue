@@ -16,17 +16,26 @@
         ></ArticleListItem>
       </template>
     </ul>
+    <DButton v-if="isDevelopment" class="new-article-btn" :to="{
+      name: 'NewArticle'
+    }">
+      <DIcon name="plus"></DIcon>
+      <span>寫新文章</span>
+    </DButton>
   </main>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
+import { Route } from 'vue-router'
+import appModule from '../store/modules/app'
 import ArticleListItem from '@/components/ArticleList/ArticleListItem.vue'
 import CircularProgress from '@/components/Basic/CircularProgress.vue'
-import { getArticleList, getArticleMeta } from '@/controllers/articles'
-import { ArticleMeta } from '../interfaces/Article'
+import DButton from '@/components/Basic/DButton.vue'
+import DIcon from '@/components/Basic/DIcon.vue'
 import { delay } from '@/utils/util'
-import { Route } from 'vue-router'
+import { ArticleMeta } from '../interfaces/Article'
+import { getArticleList, getArticleMeta } from '@/controllers/articles'
 import '@/assets/scss/pages/article-list.scss'
 
 const COUNT_OF_ARTICLES_PER_PAGE = 10
@@ -39,7 +48,9 @@ interface FilterOption {
 @Component({
   components: {
     ArticleListItem,
-    CircularProgress
+    CircularProgress,
+    DButton,
+    DIcon
   }
 })
 export default class ArticleList extends Vue {
@@ -73,6 +84,10 @@ export default class ArticleList extends Vue {
   private get sortedArticlesMeta () {
     return this.filteredArticlesMeta
       .sort((a, b) => new Date(a.createdTime).getTime() - new Date(b.createdTime).getTime())
+  }
+
+  private get isDevelopment () {
+    return appModule.isDevelopment
   }
 
   private async loadAllArticlesId () {
