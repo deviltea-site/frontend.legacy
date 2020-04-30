@@ -108,11 +108,6 @@ export default class ArticleEditor extends Vue {
     theme: 'material'
   }
 
-  // private splitterMouseData = {
-  //   isMouseDown: false,
-  //   position: 50
-  // }
-
   private get modesButtonData (): ModeButtonData[] {
     const datas: ModeButtonData[] = [
       {
@@ -256,20 +251,6 @@ export default class ArticleEditor extends Vue {
     this.isLoading = false
   }
 
-  // private startDragingSplitter () {
-  //   this.splitterMouseData.isMouseDown = true
-  // }
-
-  // private stopDragingSplitter () {
-  //   this.splitterMouseData.isMouseDown = false
-  // }
-
-  // private dragSplitter (event: MouseEvent) {
-  //   if (!this.splitterMouseData.isMouseDown) return
-  //   const isMobile = appModule.isMobile
-  //   console.log(isMobile ? event. : event.offsetX)
-  // }
-
   @Watch('isMobile')
   private onDeviceChange (newValue: boolean) {
     if (newValue && this.currentMode === 'both') {
@@ -286,21 +267,9 @@ export default class ArticleEditor extends Vue {
     this.updateHead(route)
   }
 
-  // @Watch('currentMode')
-  // private onCurrentModeChange () {
-  //   this.$scrollTo('#top-anchor')
-  // }
-
   private async mounted () {
     await this.loadInitData(this.$route)
     this.updateHead(this.$route)
-    // window.addEventListener('mousemove', this.dragSplitter)
-    // window.addEventListener('mouseup', this.stopDragingSplitter)
-  }
-
-  private beforeDestroy () {
-    // window.removeEventListener('mousemove', this.dragSplitter)
-    // window.addEventListener('mouseup', this.stopDragingSplitter)
   }
 }
 </script>
