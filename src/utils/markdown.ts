@@ -10,8 +10,10 @@ import pluginIns from 'markdown-it-ins'
 import pluginMark from 'markdown-it-mark'
 import pluginExternalLinks from 'markdown-it-external-links'
 import pluginJsonMeta from './markdown-it-plugins/jsonMeta'
+import pluginLazyLoadImg from './markdown-it-plugins/lazyLoadImg'
 import pluginAnchor from 'markdown-it-anchor'
 import pluginTOC from 'markdown-it-toc-done-right'
+import pluginImsize from 'markdown-it-imsize'
 import Prism from 'prismjs'
 import { highlightLanguages } from '../../config.json'
 import { getFullUrl } from './util'
@@ -39,6 +41,8 @@ function createMarkdownIt (isEditMode: boolean) {
     .use(pluginDeflist)
     .use(pluginAbbr)
     .use(pluginEmoji)
+    .use(pluginLazyLoadImg)
+    .use(pluginImsize)
     .use(pluginContainer, 'info')
     .use(pluginContainer, 'warning')
     .use(pluginContainer, 'error')
