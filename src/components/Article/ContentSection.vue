@@ -36,8 +36,9 @@ export default class ContentSection extends Vue {
           if (src !== null) {
             const _img = new Image()
             _img.onload = async () => {
-              await delay(2000)
-              img.replaceWith(_img)
+              delay(500)
+              img.after(_img)
+              img.remove()
             }
             _img.src = src
             _img.classList.add('loaded')

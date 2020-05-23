@@ -159,7 +159,19 @@
     &.loading {
       width: 100px;
       height: 100px;
-      margin: 0;
+    }
+
+    &.loaded {
+      animation: load-in 0.5s;
+
+      @keyframes load-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     }
   }
 
