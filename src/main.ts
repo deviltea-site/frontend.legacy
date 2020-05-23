@@ -1,22 +1,7 @@
 import Vue from 'vue'
-import VueScrollto from 'vue-scrollto'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-Vue.use(VueScrollto, {
-  container: '#app',
-  duration: 500,
-  easing: 'ease',
-  offset: 0,
-  force: true,
-  cancelable: true,
-  onStart: false,
-  onDone: false,
-  onCancel: false,
-  x: false,
-  y: true
-})
 
 Vue.config.productionTip = false
 

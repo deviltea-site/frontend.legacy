@@ -9,9 +9,9 @@
     <DButton
       v-if="showScrollToTopButton"
       class="scroll-to-top-btn"
-      v-scroll-to="'#top-anchor'"
       aria-label="the button for scrolling to top"
       circular
+      @click="scrollTo('#top-anchor')"
     >
       <DIcon name="arrow-collapse-up"></DIcon>
     </DButton>
@@ -27,7 +27,7 @@ import DIcon from '@/components/Basic/DIcon.vue'
 import DButton from '@/components/Basic/DButton.vue'
 import appModule, { DeviceType, EnvironmentType } from '@/store/modules/app'
 import head from './utils/head'
-import { getFullUrl, isSameRoute } from './utils/util'
+import { getFullUrl, isSameRoute, scrollTo } from './utils/util'
 import '@/assets/scss/app.scss'
 
 @Component({
@@ -45,6 +45,15 @@ export default class App extends Vue {
     return ['About', 'ArticleList', 'Article'].includes(this.$route.name || '')
   }
 
+  private async scrollTo (selector: string) {
+    const container = document.getElementById('app')
+    if (container === null) return
+    await scrollTo({
+      container,
+      to: document.querySelector(selector) as HTMLElement
+    })
+  }
+
   private async onPageRender () {
     this.detectHeadMeta(this.$route)
     await this.$nextTick()
@@ -55,9 +64,9 @@ export default class App extends Vue {
     if (isSameRoute(to, from)) return
     const hashValue = to.hash.substr(1)
     if (hashValue) {
-      this.$scrollTo(`#${CSS.escape(hashValue)}`)
+      this.scrollTo(`#${CSS.escape(hashValue)}`)
     } else {
-      this.$scrollTo('#top-anchor')
+      this.scrollTo('#top-anchor')
     }
   }
 
