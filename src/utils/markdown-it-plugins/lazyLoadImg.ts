@@ -14,7 +14,10 @@ function plugin (md: MarkdownIt) {
       applyRecursive(token.children)
     })
   }
-  md.inline.ruler.before('emphasis', 'lazy_load_image', function (state) {
+  // md.inline.ruler.before('emphasis', 'lazy_load_image', function (state) {
+  //   applyRecursive(state.tokens)
+  // })
+  md.core.ruler.push('lazy_load_image', function (state) {
     applyRecursive(state.tokens)
   })
 }

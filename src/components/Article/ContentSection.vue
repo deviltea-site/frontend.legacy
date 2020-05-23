@@ -14,6 +14,18 @@ export default class ContentSection extends Vue {
 
   @Watch('content')
   private async onContentChange () {
+    this.createIntersectionObserver()
+    await this.$nextTick()
+    const contentDOM = document.getElementById('content')
+    if (contentDOM === null) return
+    contentDOM.querySelectorAll('img.loading')
+      .forEach((img) => {
+        if (this.intersectionObserver === null) return
+        this.intersectionObserver.observe(img)
+      })
+  }
+
+  private createIntersectionObserver () {
     this.destroyIntersectionObserver()
     this.intersectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
@@ -24,7 +36,7 @@ export default class ContentSection extends Vue {
           if (src !== null) {
             const _img = new Image()
             _img.onload = async () => {
-              await delay(500)
+              await delay(2000)
               img.replaceWith(_img)
             }
             _img.src = src
@@ -37,14 +49,6 @@ export default class ContentSection extends Vue {
         }
       })
     })
-    await this.$nextTick()
-    const contentDOM = document.getElementById('content')
-    if (contentDOM === null) return
-    contentDOM.querySelectorAll('img.loading')
-      .forEach((img) => {
-        if (this.intersectionObserver === null) return
-        this.intersectionObserver.observe(img)
-      })
   }
 
   private destroyIntersectionObserver () {
