@@ -8,6 +8,7 @@
       write: currentMode === 'write',
       both: currentMode === 'both'
     }"
+    :style="style"
   >
     <div class="mode-switch-container">
       <nav class="mode-switch">
@@ -31,7 +32,12 @@
           :options="codeMirrorOptions"
         ></CodeMirror>
       </section>
-      <div class="splitter"></div>
+      <div
+        class="splitter"
+        @mousedown.stop="splitterMouseDownHandler"
+      >
+        <div class="bar"></div>
+      </div>
       <section class="preview-container">
         <article class="article-body">
           <MetaHeader v-if="isMetaValid" :meta="renderedData.meta"></MetaHeader>
@@ -95,6 +101,7 @@ export default class ArticleEditor extends Vue {
   private markdownContent = ''
   private isLoading = true
   private currentMode: Mode = 'both'
+  private splitterOffsetLeftPercentage = 50
   private codeMirrorOptions = {
     tabSize: 2,
     indentWithTabs: true,
@@ -106,6 +113,27 @@ export default class ArticleEditor extends Vue {
     viewportMargin: Infinity,
     mode: 'text/x-markdown',
     theme: 'material'
+  }
+
+  private get style () {
+    return {
+      '--editor-width': `${this.splitterOffsetLeftPercentage}%`,
+      '--preview-width': `${100 - this.splitterOffsetLeftPercentage}%`
+    }
+  }
+
+  private splitterMouseDownHandler () {
+    document.addEventListener('mousemove', this.splitterMouseMoveHandler)
+    document.addEventListener('mouseup', this.splitterMouseUpHandler)
+  }
+
+  private splitterMouseMoveHandler (e: MouseEvent) {
+    requestAnimationFrame(() => { this.splitterOffsetLeftPercentage = e.clientX * 100 / window.innerWidth })
+  }
+
+  private splitterMouseUpHandler () {
+    document.removeEventListener('mousemove', this.splitterMouseMoveHandler)
+    document.removeEventListener('mouseup', this.splitterMouseUpHandler)
   }
 
   private get modesButtonData (): ModeButtonData[] {
