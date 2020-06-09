@@ -32,13 +32,13 @@ export function isSameRoute (to: Route, from?: Route) {
   return from && to.fullPath === from.fullPath
 }
 
+type Vector2D = { x: number; y: number }
 interface ScrollToOptions {
   container?: HTMLElement | null;
-  from?: HTMLElement | number | null;
-  to: HTMLElement | number | null;
+  from?: HTMLElement | Vector2D | null;
+  to: HTMLElement | Vector2D | null;
   duration?: number;
-  offsetTop?: number;
-  onComplete?: () => void;
+  offset?: Vector2D;
 }
 
 function easeInOutQuad (currentTime: number, start: number, delta: number, duration: number) {
@@ -52,27 +52,29 @@ export function scrollTo (options: ScrollToOptions) {
   return new Promise((resolve) => {
     if (options.to === null) return
     const container: HTMLElement = options.container || document.body
-    const from: number = options.from ? (typeof options.from === 'number' ? options.from : (options.from.parentElement === container ? options.from.scrollTop : container.scrollTop)) : container.scrollTop
-    const { offsetTop = 0 } = options
-    const to: number | null = typeof options.to === 'number' ? options.to + offsetTop : options.to.offsetTop + offsetTop
+    const from: Vector2D = options.from ? (options.from instanceof HTMLElement ? (options.from.parentElement === container ? { x: options.from.scrollLeft, y: options.from.scrollTop } : { x: container.scrollLeft, y: container.scrollTop }) : options.from) : { x: container.scrollLeft, y: container.scrollTop }
+    const { offset = { x: 0, y: 0 } } = options
+    const to: Vector2D | null = options.to instanceof HTMLElement ? { x: options.to.offsetLeft + offset.x, y: options.to.offsetTop + offset.y } : { x: options.to.x + offset.x, y: options.to.y + offset.y }
     if (to === null) return
     const { duration = 500 } = options
-    const { onComplete } = options
-    const delta: number = to - from
-    const increment = 20
+    const delta = { x: to.x - from.x, y: to.y - from.y }
+    const increment = 10
     let currentTime = 0
 
-    const animateScroll = () => {
+    function animateScroll () {
       currentTime += increment
-      const value = easeInOutQuad(currentTime, from, delta, duration)
-      container.scrollTo(0, value)
+      const value = {
+        x: easeInOutQuad(currentTime, from.x, delta.x, duration),
+        y: easeInOutQuad(currentTime, from.y, delta.y, duration)
+      }
+      container.scrollTo(value.x, value.y)
+
       if (currentTime < duration) {
-        window.setTimeout(animateScroll, increment)
+        window.setTimeout(() => requestAnimationFrame(animateScroll), increment)
       } else {
         resolve()
-        if (onComplete) onComplete()
       }
     }
-    animateScroll()
+    requestAnimationFrame(animateScroll)
   })
 }
