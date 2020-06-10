@@ -14,6 +14,7 @@ import pluginLazyLoadImg from './markdown-it-plugins/lazyLoadImg'
 import pluginAnchor from 'markdown-it-anchor'
 import pluginTOC from 'markdown-it-toc-done-right'
 import pluginImsize from 'markdown-it-imsize'
+import pluginMarkMarkdownLine from './markdown-it-plugins/markMarkdownLine'
 import Prism from 'prismjs'
 import { highlightLanguages } from '../../config.json'
 import { getFullUrl } from './util'
@@ -65,6 +66,7 @@ function createMarkdownIt (isEditMode: boolean) {
       listType: 'ul'
     })
     .use(pluginJsonMeta)
+    .use(isEditMode ? pluginMarkMarkdownLine : () => ({}))
 }
 
 function createRenderMarkdownFunction (isEditMode: boolean) {
@@ -75,7 +77,7 @@ function createRenderMarkdownFunction (isEditMode: boolean) {
 }
 
 export const renderMarkdown = createRenderMarkdownFunction(false)
-export const renderEditableMarkdown = createRenderMarkdownFunction(true)
+export const renderEditorMarkdown = createRenderMarkdownFunction(true)
 
 export function getElementMarkdownContent (element: HTMLElement) {
   return (element.getAttribute('data-md-content') || '').replace(/&quot/g, '"')
