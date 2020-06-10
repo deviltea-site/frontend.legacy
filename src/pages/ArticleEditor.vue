@@ -27,10 +27,12 @@
     <CircularProgress v-if="isLoading" color="#ccc"></CircularProgress>
     <template v-else>
       <section class="editor-container">
-        <CodeMirror
+        <VueCodeMirror
+          ref="codemirror"
           v-model="markdownContent"
           :options="codeMirrorOptions"
-        ></CodeMirror>
+          @scroll="onEditorScroll"
+        ></VueCodeMirror>
       </section>
       <div
         class="splitter"
@@ -61,18 +63,20 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
-import { renderMarkdown } from '@/utils/markdown'
+import { renderEditorMarkdown } from '@/utils/markdown'
 import { getArticleSource } from '@/controllers/articles'
 import { Route } from 'vue-router'
 import { ArticleMeta } from '../interfaces/Article'
 import { delay, saveFile } from '../utils/util'
+import { debounce } from 'lodash-es'
 import head from '../utils/head'
 import CircularProgress from '@/components/Basic/CircularProgress.vue'
 import MetaHeader from '@/components/Article/MetaHeader.vue'
 import ContentSection from '@/components/Article/ContentSection.vue'
 import DIcon from '@/components/Basic/DIcon.vue'
 import DButton from '@/components/Basic/DButton.vue'
-import { codemirror as CodeMirror } from 'vue-codemirror'
+import { codemirror as VueCodeMirror } from 'vue-codemirror'
+import { EditorConfiguration } from 'codemirror'
 import appModule from '@/store/modules/app'
 import 'codemirror/mode/gfm/gfm'
 import 'codemirror/lib/codemirror.css'
@@ -92,7 +96,7 @@ interface ModeButtonData {
     MetaHeader,
     ContentSection,
     CircularProgress,
-    CodeMirror,
+    VueCodeMirror,
     DIcon,
     DButton
   }
@@ -102,18 +106,21 @@ export default class ArticleEditor extends Vue {
   private isLoading = true
   private currentMode: Mode = 'both'
   private splitterOffsetLeftPercentage = 50
-  private codeMirrorOptions = {
+  private codeMirrorOptions: EditorConfiguration = {
     tabSize: 2,
     indentWithTabs: true,
     foldGutter: true,
-    styleActiveLine: true,
     lineNumbers: true,
     lineWrapping: true,
-    line: true,
     viewportMargin: Infinity,
     mode: 'text/x-markdown',
     theme: 'material'
   }
+
+  private refreshEditor = debounce(() => {
+    const codemirror: VueCodeMirror = this.$refs.codemirror
+    codemirror.refresh()
+  })
 
   private get style () {
     return {
@@ -128,7 +135,10 @@ export default class ArticleEditor extends Vue {
   }
 
   private splitterMouseMoveHandler (e: MouseEvent) {
-    requestAnimationFrame(() => { this.splitterOffsetLeftPercentage = e.clientX * 100 / window.innerWidth })
+    requestAnimationFrame(() => {
+      this.splitterOffsetLeftPercentage = e.clientX * 100 / window.innerWidth
+      this.refreshEditor()
+    })
   }
 
   private splitterMouseUpHandler () {
@@ -171,7 +181,7 @@ export default class ArticleEditor extends Vue {
   private get renderedData () {
     const parentContainer = document.createElement('div')
     const contentContainer = document.createElement('div')
-    parentContainer.innerHTML = renderMarkdown(this.markdownContent)
+    parentContainer.innerHTML = renderEditorMarkdown(this.markdownContent)
     const meta: ArticleMeta = JSON.parse(parentContainer.querySelector('#json-meta')?.innerHTML || 'null')
     contentContainer.append(...Array.from(parentContainer.children).filter((element) => element.id !== 'json-meta'))
     return {
@@ -277,6 +287,10 @@ export default class ArticleEditor extends Vue {
     await delay(100)
     this.markdownContent = tempContent
     this.isLoading = false
+  }
+
+  private onEditorScroll (a) {
+    console.log(a)
   }
 
   @Watch('isMobile')
