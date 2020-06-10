@@ -15,6 +15,7 @@
     "@mdi/js": "^4.9.95",
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
+    "codemirror": "^5.54.0",
     "core-js": "^3.6.4",
     "lodash-es": "^4.17.15",
     "markdown-it": "^10.0.0",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.18",
+    "@types/codemirror": "0.0.95",
     "@types/lodash-es": "^4.17.3",
     "@types/markdown-it": "0.0.9",
     "@types/node": "^13.13.2",
