@@ -290,7 +290,7 @@ export default class ArticleEditor extends Vue {
   }
 
   private onEditorScroll (a) {
-    console.log(a)
+    // console.log(a)
   }
 
   @Watch('isMobile')
