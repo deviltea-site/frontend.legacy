@@ -30,10 +30,10 @@ function createMarkdownIt (isEditMode: boolean) {
     highlight (text, lang) {
       if (lang && highlightLanguages.find((hlang) => hlang.name === lang || hlang.alias === lang)) {
         try {
-          return `<pre class="code-block" data-lang="${lang}"${isEditMode ? ` data-md-content="\`\`\`${lang}\n${text.replace(/"/g, '&quot')}\n\`\`\`"` : ''}><code>${Prism.highlight(text, Prism.languages[lang], lang)}</code></pre>`
+          return `<pre class="code-block" data-lang="${lang}"><code>${Prism.highlight(text, Prism.languages[lang], lang)}</code></pre>`
         } catch (__) {}
       }
-      return `<pre class="code-block"${isEditMode ? ` data-md-content="\`\`\`${lang}\n${text.replace(/"/g, '&quot')}\n\`\`\`"` : ''}><code>${MarkdownIt().utils.escapeHtml(text)}</code></pre>`
+      return `<pre class="code-block"><code>${MarkdownIt().utils.escapeHtml(text)}</code></pre>`
     }
   })
     .use(pluginSub)
