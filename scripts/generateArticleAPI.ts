@@ -1,12 +1,16 @@
 import fs from 'fs'
 import path from 'path'
 import cheerio from 'cheerio'
+import { highlightLanguages } from '../config.json'
+import loadLanguages from 'prismjs/components/index'
 import { renderMarkdown } from '../src/utils/markdown'
 import { Data, Article, ArticleMeta, ArticleList, Category, CategoryList, Tag, TagList } from '../src/interfaces/Article'
 
 interface TempData {
   [key: string]: string[];
 }
+
+loadLanguages(highlightLanguages.map((a) => a.name))
 
 const rootPath = path.join(__dirname, '..')
 const sourceArticlesDir = path.join(rootPath, 'articles/')
